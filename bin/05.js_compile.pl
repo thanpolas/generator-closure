@@ -28,7 +28,9 @@ $externsPath = $binPath . "/externs";
 $asyncPath = $jsroot . "/closure-library/third_party/closure/goog";
 $calcdeps = $jsroot . "/closure-library/closure/bin/calcdeps.py";
 $closurebuilder = $jsroot . "/closure-library/closure/bin/build/closurebuilder.py";
-$closurecompiler = $projectRoot . "/bin/Third-Party/closure_compiler/compiler.jar";
+
+#$closurecompiler = $projectRoot . "/bin/Third-Party/closure_compiler/compiler.jar";
+$closurecompiler = $projectRoot . "/bin/superstartup-compiler/build/sscompiler.jar";
 ######################### CONFIG END ###########################
 
 $cmdBuild = "$closurebuilder ";
@@ -43,6 +45,7 @@ $cmdCompile = "  --compiler_flags=\"--compilation_level=ADVANCED_OPTIMIZATIONS\"
 $cmdCompile .= "  --compiler_flags=\"--externs=$externsPath/jquery-1.7.js\"";
 $cmdCompile .= "  --compiler_flags=\"--externs=$externsPath/json.js\"";
 
+$cmdCompile .= "  --compiler_flags=\"--define='goog.DEBUG=false'\"";
 $cmdCompile .= " --compiler_flags=\"--warning_level=verbose\"";
 $cmdCompile .= " --compiler_flags=\"--jscomp_off=fileoverviewTags\"";
 $cmdCompile .= " --compiler_flags=\"--summary_detail_level=3\"";
@@ -61,10 +64,12 @@ if ($DEBUG) {
 $cmdBuild .= $cmdCompile;
 
 if ($DEBUG) {
-  $cmdBuild .= " > compiler.out";
+#  $cmdBuild .= " > compiler.out";
 } else {
-  $cmdBuild .= " > compiler.out 2>&1";
+#  $cmdBuild .= " > compiler.out 2>&1";
 }
+
+  $cmdBuild .= " > compiler.out";
 
 system $cmdBuild;
 

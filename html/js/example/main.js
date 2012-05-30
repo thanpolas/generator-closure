@@ -1,6 +1,8 @@
 goog.provide('example');
 
 
+
+
 goog.require('example.sample2');
 // although we required sample2 to load before sample1
 // sample2 has a require of it's own to load sample1 first, 
