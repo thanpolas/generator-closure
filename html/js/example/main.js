@@ -9,6 +9,12 @@ goog.require('example.sample2');
 // so this is fixed by the calcdeps script or the compiler 
 goog.require('example.sample1');
 
+goog.require('goog.events');
+goog.require('goog.events.EventTarget');
+
+/** @type {number} the key to the event binding */
+example.key;
+
 /**
  * Executes inline from our index.html
  *
@@ -20,9 +26,27 @@ example.init = function()
   
   var el = example.sample1.getElement('output');
   example.sample1.elementHTML(el, ret);
+  
+  var link = example.sample1.getElement('openFancyWindow');
+  example.key = goog.events.listen(link, goog.events.EventType.CLICK, example.sample2.launchFancyWindow);
+  
 };
 
+/**
+ * Verify that goog.DEBUG is false after compilation 
+ * (Run this from a browser's JS console)
+ * @return {void}
+ */
+example.deb = function()
+{
+  if (goog.DEBUG)
+    console.log('TRUE');
+  else
+    console.log('FALSE');   
+};
+
+// kickoff our application
+example.init();
+
 // export our symbols to the global scope
-(function(goog){
-  goog.exportSymbol('example.init', example.init);
-})(goog);
+goog.exportSymbol('example.deb', example.deb);
