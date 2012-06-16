@@ -29,8 +29,8 @@ $asyncPath = $jsroot . "/closure-library/third_party/closure/goog";
 $calcdeps = $jsroot . "/closure-library/closure/bin/calcdeps.py";
 $closurebuilder = $jsroot . "/closure-library/closure/bin/build/closurebuilder.py";
 
-$closurecompiler = $projectRoot . "/bin/Third-Party/closure_compiler/compiler.jar";
-#$closurecompiler = $projectRoot . "/bin/superstartup-compiler/build/sscompiler.jar";
+$closurecompiler = $projectRoot . "/bin/compilers/compiler.jar";
+#$closurecompiler = $projectRoot . "/bin/compilers/sscompiler.jar";
 ######################### CONFIG END ###########################
 
 $cmdBuild = "$closurebuilder ";
@@ -68,5 +68,5 @@ $cmdBuild .= " > compiler.out";
 
 system $cmdBuild;
 
-print "JS Compiled. See output in engine/bin/compiler.out\n";
+print "\nJS Compiled. \n";
 

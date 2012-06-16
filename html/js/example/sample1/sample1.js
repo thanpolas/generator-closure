@@ -1,5 +1,7 @@
 goog.provide('example.sample1');
 
+goog.require('example.ct');
+
 /**
  * Get an element by it's ID
  * @param {string} elementId the element's ID
@@ -15,11 +17,17 @@ example.sample1.getElement = function(elementId)
  *
  * @param {Element} element
  * @param {string} html
+ * @param {boolean} opt_append if we want to append
  * @return {void}
  */
-example.sample1.elementHTML = function(element, html)
+example.sample1.elementHTML = function(element, html, opt_append)
 {
-  element.innerHTML = html;
+  if(opt_append) {
+    element.innerHTML += html;
+  } else {
+    element.innerHTML = html;
+  }
+
 };
 
 /**

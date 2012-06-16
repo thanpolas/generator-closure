@@ -30,6 +30,8 @@ example.init = function()
   var link = example.sample1.getElement('openFancyWindow');
   example.key = goog.events.listen(link, goog.events.EventType.CLICK, example.sample2.launchFancyWindow);
   
+  example.ct.init();
+  
 };
 
 /**

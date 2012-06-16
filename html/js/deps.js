@@ -2,5 +2,6 @@
 goog.addDependency("../../../deps.js", [], []);
 goog.addDependency("../../../init.js", ['___bootstrap___'], ['example']);
 goog.addDependency("../../../example/main.js", ['example'], ['example.sample2', 'example.sample1', 'goog.events', 'goog.events.EventTarget']);
-goog.addDependency("../../../example/sample1/sample1.js", ['example.sample1'], []);
+goog.addDependency("../../../example/sample1/configTest.js", ['example.ct'], ['goog.object', 'goog.structs.Map']);
+goog.addDependency("../../../example/sample1/sample1.js", ['example.sample1'], ['example.ct']);
 goog.addDependency("../../../example/sample2/sample2.js", ['example.sample2'], ['example.sample1', 'goog.debug', 'goog.debug.FancyWindow', 'goog.debug.Logger', 'goog.debug.LogManager']);
