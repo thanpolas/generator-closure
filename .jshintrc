@@ -73,6 +73,9 @@
    *
    */
   "predef": [
-      "goog"
+      "goog",
+      "COMPILED",
+      "app",
+      "ssd"
   ]
 }
