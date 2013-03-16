@@ -1,0 +1,42 @@
+{
+  "name": "generator-closure",
+  "version": "0.0.1",
+  "description": "Yeoman generator for Closure Library",
+  "keywords": [
+    "yeoman-generator",
+    "yeoman",
+    "generator",
+    "framework",
+    "component",
+    "front-end",
+    "app",
+    "closure",
+    "closure library"
+  ],
+  "homepage": "https://github.com/thanpolas/generator-closure",
+  "bugs": "https://github.com/thanpolas/generator-closure/issues",
+  "author": {
+    "name": "Thanasis Polychronakis",
+    "email": "thanpolas@gmail.com",
+    "url": "http://thanpol.as"
+  },
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thanpolas/generator-closure.git"
+  },
+  "dependencies": {
+    "yeoman-generator": "~0.10.2"
+  },
+  "devDependencies": {
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://en.wikipedia.org/wiki/MIT_License"
+    }
+  ]
+}
