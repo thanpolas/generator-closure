@@ -2,12 +2,10 @@
 
 A kick ass library!
 
-## **Mantri** is...
-
 ## Getting Started
 
 ```shell
-npm install <%= appname %> --save-dev
+npm install <%= _.slugify(appname) %> --save-dev
 ```
 
 
@@ -18,12 +16,13 @@ npm install <%= appname %> --save-dev
   - Big Bang
 
 ## License
-Copyright (c) 2012 ME PRETTY
+Copyright (c) <%= (new Date).toString().split(' ')[1] %> ME PRETTY
 Licensed under the [MIT](http://en.wikipedia.org/wiki/MIT_License).
 
-
+[closure-library]: https://developers.google.com/closure/library/ "Google Closure Library"
 [closure-tools]: https://developers.google.com/closure/ "Google Closure Tools"
 [grunt]: http://gruntjs.com/
 [Getting Started]: https://github.com/gruntjs/grunt/wiki/Getting-started
 [package.json]: https://npmjs.org/doc/json.html
 [Gruntfile]: https://github.com/gruntjs/grunt/wiki/Sample-Gruntfile "Grunt's Gruntfile.js"
+[yeoman]: http://yeoman.io/ "yeoman Modern Workflows for Modern Webapps"
