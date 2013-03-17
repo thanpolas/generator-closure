@@ -6,3 +6,4 @@ dist
 app/components
 closure-library
 templates/package.json
+npm-debug.log

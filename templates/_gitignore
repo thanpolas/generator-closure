@@ -5,3 +5,4 @@ temp
 app/components
 closure-library
 app/jsc
+npm-debug.log
