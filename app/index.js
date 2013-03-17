@@ -13,7 +13,20 @@ var Generator = module.exports = function Generator() {
 
   this.sourceRoot(path.join(__dirname, '../templates'));
 
+  this.on('end', function () {
+    console.log('\nAll files copied!\n\nDownload the Closure Library in the ' +
+      'app/'.yellow + ' directory:\n' +
+      'git clone https://code.google.com/p/closure-library/ app/closure-library'.bold.yellow + '\n' +
+      '\nthen: ' + 'npm install'.bold.yellow + ' to install all required' +
+      ' dependencies.\n\nFinaly start the server with ' +
+      'grunt server'.bold.yellow + '\n' +
+      '\nBuild: ' + 'grunt test'.bold.yellow +
+      '\nRun tests: ' + 'grunt test'.bold.yellow +
+      '\nRun tests on the browser: ' + 'grunt server:test'.bold.yellow +
+      '\n\nEnjoy!\n');
+  });
 
+  this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
 
 util.inherits(Generator, generator.Base);
@@ -29,8 +42,12 @@ Generator.prototype.scaffold = function scaffold() {
   this.copy('_gitignore', '.gitignore');
   this.copy('_jshintrc', '.jshintrc');
   this.copy('_package.json', 'package.json');
-  this.copy('Gruntfile.js', 'Gruntfile.js');
   this.copy('NOTICE.md', 'NOTICE.md');
-  this.copy('Gruntfile.js', 'Gruntfile.js');
+
+
+  // templating copy
+  this.template('Gruntfile.js', 'Gruntfile.js');
+  this.template('README.md', 'README.md');
+  this.template('LICENSE', 'LICENSE');
 
 };

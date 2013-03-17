@@ -88,10 +88,10 @@ module.exports = function (grunt) {
     },
     open: {
       server: {
-        path: 'http://localhost:<%= connect.options.port %>'
+        path: 'http://localhost:<%%= connect.options.port %>'
       },
       test: {
-        path: 'http://localhost:<%= connect.test.options.port %>/test/'
+        path: 'http://localhost:<%%= connect.test.options.port %>/test/'
       }
     },
 
@@ -101,9 +101,9 @@ module.exports = function (grunt) {
           run: true,
           ignoreLeaks: false,
           urls: [
-            'http://localhost:<%= connect.test.options.port %>/test/index.html',
-            'http://localhost:<%= connect.test.options.port %>/test/index.html?compiled=true',
-            'http://localhost:<%= connect.test.options.port %>/test/index.html?unit=true'
+            'http://localhost:<%%= connect.test.options.port %>/test/index.html',
+            'http://localhost:<%%= connect.test.options.port %>/test/index.html?compiled=true',
+            'http://localhost:<%%= connect.test.options.port %>/test/index.html?unit=true'
           ]
         }
       }
@@ -227,14 +227,14 @@ module.exports = function (grunt) {
         expand: true,
         cwd: 'app/images',
         src: '{,*/}*.{png,jpg,jpeg}',
-        dest: '<%= yeoman.dist %>/images'
+        dest: '<%%= yeoman.dist %>/images'
       }]
     }
   },
   cssmin: {
     dist: {
       files: {
-        '<%= yeoman.dist %>/styles/main.css': [
+        '<%%= yeoman.dist %>/styles/main.css': [
           '.tmp/styles/{,*/}*.css',
           'app/styles/{,*/}*.css'
         ]
@@ -297,6 +297,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('zit', function(){
-    console.log('tpl:', grunt.template.process('<%= connect.test.options.port %>'));
+    console.log('tpl:', grunt.template.process('<%%= connect.test.options.port %>'));
   });
 };
