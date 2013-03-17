@@ -17,7 +17,7 @@ npm install <%= _.slugify(appname) %> --save-dev
 
 ## License
 Copyright (c) <%= (new Date).toString().split(' ')[1] %> ME PRETTY
-Licensed under the [MIT](http://en.wikipedia.org/wiki/MIT_License).
+Licensed under the [MIT](LICENSE-MIT).
 
 [closure-library]: https://developers.google.com/closure/library/ "Google Closure Library"
 [closure-tools]: https://developers.google.com/closure/ "Google Closure Tools"

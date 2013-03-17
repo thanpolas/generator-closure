@@ -6,7 +6,5 @@ goog.addDependency('../../../../../test/bdd/events/eventsAPI.test.js', ['app.tes
 goog.addDependency('../../../../../test/bdd/main.js', ['app.test.main'], ['app.test.fixture.userOne']);
 goog.addDependency('../../../../../test/fixtures/events.fixture.js', ['app.test.fixture.event'], []);
 goog.addDependency('../../../../../test/fixtures/udo.fixture.js', ['app.test.fixture.userOne'], []);
-goog.addDependency('../../../../../test/mocks/configClass.mock.js', ['ssd.test.unit.configClass'], ['ssd.Config', 'ssd.Module']);
-goog.addDependency('../../../../../test/mocks/network.mock.js', ['ssd.test.mock.net'], []);
 goog.addDependency('../../../../../test/unit/bootstrap.js', ['app.test.unit.bootstrap'], ['app.test.helpers', 'app.test.main']);
 goog.addDependency('../../../../../test/unit/helpers/helpers.test.js', ['app.test.helpers'], ['ssd.helpers']);

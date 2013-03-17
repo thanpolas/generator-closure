@@ -5,3 +5,4 @@ dist
 .sass-cache
 app/components
 closure-library
+templates/package.json

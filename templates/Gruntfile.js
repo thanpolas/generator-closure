@@ -38,8 +38,6 @@ module.exports = function (grunt) {
   var vendorFiles = [
     // all files JS in vendor folder
     APP_PATH + '/vendor/*.js',
-    // except the closure loader
-    '!' + APP_PATH + '/vendor/vendor.main.js',
     // and jQuery, we'll use a CDN for it.
     '!' + APP_PATH + '/vendor/jQuery*'
   ];
