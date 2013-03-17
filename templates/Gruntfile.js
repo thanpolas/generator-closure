@@ -165,32 +165,32 @@ module.exports = function (grunt) {
       },
       app: {
         src: [APP_PATH, CLOSURE_LIBRARY],
-        dest: '.tmp/compiled.js'
+        dest: 'temp/compiled.js'
       },
       debug: {
         options: {
           compilerFile: compiler.getPath()
         },
         src: [APP_PATH, CLOSURE_LIBRARY],
-        dest: '.tmp/compiled.debug.js'
+        dest: 'temp/compiled.debug.js'
       }
     },
 
     // clean, uglify and concat aid in building
     clean: {
-      dist: ['.tmp'],
-      server: '.tmp'
+      dist: ['temp'],
+      server: 'temp'
     },
     uglify: {
       vendor: {
         files: {
-          '.tmp/vendor.js': vendorFiles
+          'temp/vendor.js': vendorFiles
         }
       }
     },
     concat: {
         production: {
-          src: ['.tmp/vendor.js', '.tmp/compiled.js'],
+          src: ['temp/vendor.js', 'temp/compiled.js'],
           dest: DEST_COMPILED
         }
     },
@@ -207,7 +207,7 @@ module.exports = function (grunt) {
     compass: {
       options: {
         sassDir: 'app/styles',
-        cssDir: '.tmp/styles',
+        cssDir: 'temp/styles',
         imagesDir: 'app/images',
         javascriptsDir: 'app/scripts',
         fontsDir: 'app/styles/fonts',
@@ -235,7 +235,7 @@ module.exports = function (grunt) {
     dist: {
       files: {
         '<%%= yeoman.dist %>/styles/main.css': [
-          '.tmp/styles/{,*/}*.css',
+          'temp/styles/{,*/}*.css',
           'app/styles/{,*/}*.css'
         ]
       }

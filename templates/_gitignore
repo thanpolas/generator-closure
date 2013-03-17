@@ -1,6 +1,6 @@
 node_modules
 dist
-.tmp
+temp
 .sass-cache
 app/components
 closure-library
