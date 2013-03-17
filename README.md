@@ -1,10 +1,10 @@
-# Closure Library Yeoman Generator
+# Closure Library Generator
 
 Create a fully working [Closure Library][closure-library] project in seconds.
 
 ## Getting Started
 
-The generator is using [yeoman][] and relies on [Grunt][] to operate. If you don't have them installed:
+The generator is using [yeoman][] and relies on [Grunt][] to operate. If you don't have them, install:
 
 ```shell
 npm install -g yo grunt-cli
@@ -49,12 +49,29 @@ npm install
   - Run a static webserver with livereload.
   - Test your code on the CLI & the browser.
 
+## Table Of Contents
+
+* [Grunt Tasks](#grunt-tasks)
+  - [grunt server](#grunt-server)
+  - [grunt deps](#grunt-deps)
+  - [grunt build](#grunt-build)
+  - [grunt test](#grunt-test)
+* [Your Closure Application](#your-closure-application)
+  - [Folder Layout](#folder-layout)
+* [Third-Party Dependencies](#third-party-dependencies)
+* [The Test Suites](#the-test-suites)
+* About
+  - [Contributing](#contributing)
+  - [The 'ssd' Namespace](#the-ssd-namespace)
+  - [Release History](#release-history)
+  - [License](#license)
+
 ## Grunt Tasks
 
 ### Tasks Overview
 
 * **`grunt server`** Start a static server
-* **`grunt`** or **`grunt deps`** Calculate Dependencies
+* **`grunt` or `grunt deps`** Calculate Dependencies
 * **`grunt build`** Compile your code
 * **`grunt test`** Run tests on the command line
 * **`grunt server:test`** Run tests on the browser
@@ -75,6 +92,8 @@ The `grunt server` task will do quite a few things for you.
 The `grunt deps` task will calculate the dependencies of your project and output to the deps file: `app/js/deps-app.js`.
 
 It will also run the dependencies task for the behavioral and unit tests updating the files: `test/bdd/deps-test-bdd.js` and `test/unit/deps-test-tdd.js`. Find more about testing bellow.
+
+<sup>[↑ Back to TOC](#table-of-contents)</sup>
 
 ### `grunt build`
 
@@ -98,6 +117,9 @@ At the top of the file you will find a few build related variables:
   // define the main namespace of your app
   var ENTRY_POINT = 'app';
 ```
+##### Third-Party Libraries
+
+Read about [Configuring Third-Party dependencies for your build](#configure-third-party-building).
 
 ##### EXTERNS_PATH
 
@@ -128,7 +150,9 @@ The `compiler` variable is the [Superstartup Closure Compiler][] npm package tha
 
 The test tasks for the CLI and the browser. Read more on the Testing section.
 
-## The Closure App
+<sup>[↑ Back to TOC](#table-of-contents)</sup>
+
+## Your Closure Application
 
 The scaffold of the closure application gives you a kickstart on writing your own app.
 A lot of different practices and techniques are incorporated in the scaffolding. They are based on distilled experiences and problems faced over years of developing closure applications. Feel free to rip everything off and start from scratch or checkout what's included...
@@ -196,11 +220,13 @@ The structs folder should contain all your data abstractions. These are the buil
 
 #### `vendor/`
 
-All third-party libraries should be in here. Read more about third-party dependencies in this section.
+All third-party libraries should be in here. Read more about [Third-Party Dependencies](#third-party-dependencies).
 
 ### Your Application Folders
 
 Create new folders as you see fit. In the generator the folder `app/` is included which contains a skeleton app.
+
+<sup>[↑ Back to TOC](#table-of-contents)</sup>
 
 ## Third-Party Dependencies
 
@@ -246,6 +272,8 @@ To define what third-party files will get bundled with your production file you 
 ```
 
 This configuration will include every javascript file in the `app/js/vendor/` directory, except any jQuery file. We don't want to include jQuery in the production file as it is faster to include from a public CDN.
+
+<sup>[↑ Back to TOC](#table-of-contents)</sup>
 
 ## The Test Suites
 
@@ -297,13 +325,15 @@ http://localhost:4242/test/?grep=ssd.helpers%20isjQ&unit=1
 
 Sorry about that, please share your thoughts.
 
+<sup>[↑ Back to TOC](#table-of-contents)</sup>
+
 ## Contributing
 
 Closure is so vast and we need to have a common place to document all the techniques and best practises used today.
 
 ## The `ssd` Namespace
 
-The `ssd` namespace that's included in some libraries stands for **S**uper**S**tartup **D**evelopment. It is the development namespace used by the [Superstartup][] library.
+The `ssd` namespace that's included in some libraries stands for SuperStartup Development. It is the development namespace used by the [Superstartup][] library.
 
 ## Release History
 - **v0.1.0**, *Late Mar 2013*
@@ -313,6 +343,7 @@ The `ssd` namespace that's included in some libraries stands for **S**uper**S**t
 Copyright (c) 2013 Thanasis Polychronakis
 Licensed under the [MIT](LICENSE-MIT).
 
+<sup>[↑ Back to TOC](#table-of-contents)</sup>
 
 [closure-library]: https://developers.google.com/closure/library/ "Google Closure Library"
 [closure-tools]: https://developers.google.com/closure/ "Google Closure Tools"
