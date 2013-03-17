@@ -8,8 +8,18 @@ A kick ass library!
 npm install <%= _.slugify(appname) %> --save-dev
 ```
 
+## Table Of Contents
+
+* [Getting Started](#getting-started)
+* About
+  - [Release History](#release-history)
+  - [License](#license)
 
 
+
+
+
+<sup>[↑ Back to TOC](#table-of-contents)</sup>
 
 ## Release History
 - **v0.0.1**, *Mid <%= (new Date).toString().split(' ')[1] %> <%= (new Date).toString().split(' ')[3] %>*
@@ -18,6 +28,8 @@ npm install <%= _.slugify(appname) %> --save-dev
 ## License
 Copyright (c) <%= (new Date).toString().split(' ')[1] %> ME PRETTY
 Licensed under the [MIT](LICENSE-MIT).
+
+<sup>[↑ Back to TOC](#table-of-contents)</sup>
 
 [closure-library]: https://developers.google.com/closure/library/ "Google Closure Library"
 [closure-tools]: https://developers.google.com/closure/ "Google Closure Tools"

@@ -7,12 +7,9 @@ goog.provide('ssd.vendor');
 if (!COMPILED) {
 
   /**
-   *
-   *
+   * EDIT THIS ARRAY.
    *
    * @type {Array} define the 3rd party deps.
-   *
-   *
    */
   ssd.vendor.files = [
     'when.js',

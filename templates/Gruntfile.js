@@ -22,17 +22,17 @@ module.exports = function (grunt) {
   // The folder that contains all the externs files.
   var EXTERNS_PATH = 'build/externs/';
 
-  // The path to the closure library
-  var CLOSURE_LIBRARY = 'app/closure-library';
-
   // define the main namespace of your app
   var ENTRY_POINT = 'app';
 
-  // define the path to the app
-  var APP_PATH = 'app/js';
+  // The path to the closure library
+  var CLOSURE_LIBRARY = 'app/closure-library';
 
   // the compiled file
   var DEST_COMPILED = 'app/jsc/app.js';
+
+  // define the path to the app
+  var APP_PATH = 'app/js';
 
   // the file globbing pattern for vendor file uglification.
   var vendorFiles = [
