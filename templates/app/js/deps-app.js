@@ -9,7 +9,7 @@ goog.addDependency('../../../js/helpers/debug.js', ['ssd.debug'], ['goog.debug',
 goog.addDependency('../../../js/helpers/helpers.js', ['ssd.helpers'], ['goog.array', 'goog.json', 'goog.object']);
 goog.addDependency('../../../js/libs/invocator.js', ['ssd.invocator'], ['goog.object']);
 goog.addDependency('../../../js/libs/module.js', ['app.Module'], ['goog.events.EventTarget']);
-goog.addDependency('../../../js/libs/vendor.main.js', ['ssd.vendor'], []);
+goog.addDependency('../../../js/libs/vendor.loader.js', ['ssd.vendor'], []);
 goog.addDependency('../../../js/main.js', ['app'], ['app.Core', 'app.exports', 'ssd.debug', 'ssd.vendor']);
 goog.addDependency('../../../js/network/ajax.js', ['app.ajax', 'app.ajax.Method'], ['app.sync.Response', 'goog.Uri', 'goog.net.XhrIo', 'ssd.helpers']);
 goog.addDependency('../../../js/network/response.sync.js', ['app.sync.Response', 'app.sync.T'], ['app.Response', 'goog.object']);
