@@ -10,7 +10,7 @@ The generator is using [yeoman][] and relies on [Grunt][] to operate. If you don
 npm install -g yo grunt-cli
 ```
 
-Next create and enter your project's directory. Install the generator locally:
+Next **create and enter** your project's directory. Install the generator locally:
 
 ```shell
 npm install generator-closure
@@ -34,19 +34,9 @@ npm install
 
 ## Grunt Tasks
 
-### Start a static server
-```shell
-grunt server
-```
-
-### Calculate Dependencies
-```shell
-grunt deps
-```
-### Run tests on the command live
-```shell
-grunt test
-```
+* **`grunt server`** Start a static server
+* **`grunt deps`** Calculate Dependencies
+* **`grunt test`** Run tests on the command live
 
 
 [closure-library]: https://developers.google.com/closure/library/ "Google Closure Library"
