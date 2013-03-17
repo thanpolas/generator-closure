@@ -94,30 +94,16 @@ module.exports = function (grunt) {
         path: 'http://localhost:<%= connect.test.options.port %>/test/'
       }
     },
-    clean: {
-      dist: ['.tmp'],
-      server: '.tmp'
-    },
-    uglify: {
-      vendor: {
-        files: {
-          '.tmp/vendor.js': vendorFiles
-        }
-      }
-    },
-    concat: {
-        production: {
-          src: ['.tmp/vendor.js', '.tmp/compiled.js'],
-          dest: DEST_COMPILED
-        }
-    },
-
 
     mocha: {
       all: {
         options: {
           run: true,
-          urls: ['http://localhost:<%= connect.options.port %>/index.html']
+          urls: [
+            'http://localhost:<%= connect.test.options.port %>/test/index.html'
+            //'http://localhost:<%= connect.test.options.port %>/test/index.html?compiled=true',
+            //'http://localhost:<%= connect.test.options.port %>/test/index.html?unit=true'
+          ]
         }
       }
     },
@@ -127,6 +113,8 @@ module.exports = function (grunt) {
     //
     //
     // Closure Tools Tasks
+    //
+    // Dependency & Compiling
     //
     //
     //
@@ -170,8 +158,8 @@ module.exports = function (grunt) {
           jscomp_off: ['checkTypes', 'fileoverviewTags'],
           summary_detail_level: 3,
           only_closure_dependencies: null,
-          closure_entry_point: ENTRY_POINT
-    //      output_wrapper: '(function(){%output%}).call(this);'
+          closure_entry_point: ENTRY_POINT,
+          output_wrapper: '(function(){%output%}).call(this);'
         }
       },
       app: {
@@ -185,6 +173,25 @@ module.exports = function (grunt) {
         src: [APP_PATH, CLOSURE_LIBRARY],
         dest: '.tmp/compiled.debug.js'
       }
+    },
+
+    // clean, uglify and concat aid in building
+    clean: {
+      dist: ['.tmp'],
+      server: '.tmp'
+    },
+    uglify: {
+      vendor: {
+        files: {
+          '.tmp/vendor.js': vendorFiles
+        }
+      }
+    },
+    concat: {
+        production: {
+          src: ['.tmp/vendor.js', '.tmp/compiled.js'],
+          dest: DEST_COMPILED
+        }
     },
 
 

@@ -11,6 +11,7 @@ goog.require('appOne');
 // core
 goog.exportSymbol('appOne', appOne);
 goog.exportSymbol('appOne.init', appOne.init);
+goog.exportSymbol('appOne.isReady', appOne.isReady);
 
 // net
 goog.exportSymbol('appOne.ajax.send', app.ajax.send);

@@ -101,11 +101,12 @@ app.Core.prototype.init = function( optCallback ) {
     return this._readyDefer.promise;
   }
 
-  this._readyDefer.then(cb, cb);
 
   this.debugShow.init();
 
   this._isReady = true;
+
+  cb();
   this.dispatchEvent( app.Core.EventType.INIT );
 
   return this._readyDefer.resolve();

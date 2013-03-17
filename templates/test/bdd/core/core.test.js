@@ -17,12 +17,18 @@ describe('Core API :: appOne()', function(){
       expect( appOne.init ).to.be.a('function');
     });
 
+    it('should have an isReady method', function() {
+      expect( appOne.isReady ).to.be.a('function');
+    });
 
+    it('should report a ready state of false', function(){
+      expect( appOne.isReady() ).to.be.false;
+    });
   });
   describe('Invoke appOne() and listen for all events and callbacks', function() {
 
     var appCallback = sinon.spy(),
-        initCb     = sinon.spy(),
+        initEventCb     = sinon.spy(),
         stubSync   = sinon.stub( appOne.sync, 'send' ),
         appReturn;
 
@@ -33,7 +39,7 @@ describe('Core API :: appOne()', function(){
     describe('Executing appOne() and follow up ready methods', function() {
 
       it('should boot up the appOne and emit an init event', function(done){
-        appOne.listen(app.test.fixture.event.core.INIT, initCb);
+        appOne.listen(app.test.fixture.event.core.INIT, initEventCb);
 
         appReturn = appOne( appCallback );
 
@@ -49,6 +55,10 @@ describe('Core API :: appOne()', function(){
       it('should have not made any sync calls', function() {
         expect( stubSync.called ).to.be.false;
         stubSync.restore();
+      });
+
+      it('should report a ready state of true', function(){
+        expect( appOne.isReady() ).to.be.true;
       });
 
       it('should accept a callback that immediately invokes', function() {
@@ -98,10 +108,9 @@ describe('Core API :: appOne()', function(){
     //
     describe('The init event', function() {
       it('should have triggered the init event', function() {
-        expect( initCb.calledOnce ).to.be.true;
+        expect( initEventCb.calledOnce ).to.be.true;
       });
     });
-
 
     //
     //
@@ -110,7 +119,7 @@ describe('Core API :: appOne()', function(){
     //
     describe('The init callback', function() {
       it('should have triggered the init callback', function() {
-        expect( appCallback.calledOnce ).to.be.true;
+        expect( appCallback.callCount ).to.be.true;
       });
     });
 
