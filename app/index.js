@@ -20,7 +20,7 @@ var Generator = module.exports = function Generator() {
       '\nthen: ' + 'npm install'.bold.yellow + ' to install all required' +
       ' dependencies.\n\nFinaly start the server with ' +
       'grunt server'.bold.yellow + '\n' +
-      '\nBuild: ' + 'grunt test'.bold.yellow +
+      '\nBuild: ' + 'grunt build'.bold.yellow +
       '\nRun tests: ' + 'grunt test'.bold.yellow +
       '\nRun tests on the browser: ' + 'grunt server:test'.bold.yellow +
       '\n\nEnjoy!\n');

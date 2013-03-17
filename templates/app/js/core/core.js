@@ -175,3 +175,8 @@ app.Core.prototype.removeAllListeners = function( optType ) {
  *
  */
 appOne = app.Core.getInstance();
+
+// if not on testing environment initialize the app
+if (!window['TESTING']) {
+  appOne();
+}

@@ -21,6 +21,9 @@
     var DEBUG = !!loc.match(/debug/);
     var UNIT_TESTS = !!loc.match(/unit/);
 
+    // prevent initialization of library
+    window.TESTING = true;
+
     (function(){
       var anchorBdd = {
         href: 'index.html?compiled=true',
