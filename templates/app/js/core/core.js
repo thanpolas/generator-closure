@@ -1,7 +1,14 @@
 /**
  * @fileoverview the core class of the application.
  */
+goog.provide('app');
 goog.provide('app.Core');
+goog.provide('theApp');
+
+goog.require('app.Module');
+goog.require('ssd.helpers');
+goog.require('app.ui.Debug');
+goog.require('ssd.invocator');
 
 /**
  * The base class
@@ -14,18 +21,37 @@ goog.provide('app.Core');
 app.Core = function() {
   goog.base(this);
 
+  this.logger.info('ctor() :: Initializing.');
+
   /**
    * @type {boolean}
    * @private
    */
   this._isReady = false;
 
-  if (goog.DEBUG) {
-    app.debug.openFancyWin();
-  }
+  /**
+   * @type {when.Defer}
+   * @private
+   */
+  this._readyDefer = when.defer();
 
-  this.logger.info('ctor() :: Initializing.');
+  //
+  // The invocator will return a function with all the methods of this object.
+  // In this case we bind the method 'init' to the returned functon.
+  //
+  // See the test/bdd/core/core.test.js file for expected behavior.
+  //
+  // Feel free to rip it off if you don't need such functionality.
+  //
+  // hack
+  // Run encapsulator before the other classes initialize
+  // because the encapsulator does a shallow copy of the object.
+  //
+  var selfObj = ssd.invocator.encapsulate( this, this.init );
 
+  this.debugShow = new app.ui.Debug();
+
+  return selfObj;
 };
 goog.inherits(app.Core, app.Module);
 
@@ -45,23 +71,45 @@ app.Core.EventType = {
 };
 
 /**
+ * A custom getInstance method for the Auth class singleton.
+ *
+ * We want this custom method so as to return a proper
+ * encapsulated instance that is binded (when invoked will
+ * execute) the 'get' method.
+ *
+ *
+ * @return {Function} The encapsulated instance.
+ */
+app.Core.getInstance = function() {
+  return app.Core._instance ||
+    (app.Core._instance = new app.Core());
+};
+
+/**
  * Kicks off the library.
  *
  * @param  {Function=} optCallback A callback for when ready ops finish.
+ * @return {when.Promise} a promise.
  */
 app.Core.prototype.init = function( optCallback ) {
 
   this.logger.info('init() :: Kicking off SuperStartup. isReady:' + this._isReady);
 
-  var cb = optCallback || app.noop;
+  var cb = optCallback || ssd.noop;
 
   if ( this._isReady ) {
     cb();
-    return;
+    return this._readyDefer.promise;
   }
+
+  this._readyDefer.then(cb, cb);
+
+  this.debugShow.init();
 
   this._isReady = true;
   this.dispatchEvent( app.Core.EventType.INIT );
+
+  return this._readyDefer.resolve();
 };
 
 /**
@@ -83,7 +131,6 @@ app.Core.prototype.isReady = function() {
  * Generic listener method for all events emitted by this app.
  *
  * @param {Object | goog.events.Event | null | string} event object
- * @param  {[type]}   event   [description]
  * @param {Function} cb The callback function.
  * @param {Object=} optSelf optionally define a context to invoke the callback on.
  * @return {goog.events.ListenableKey} a unique event key.
@@ -93,7 +140,6 @@ app.Core.prototype.listen = function(event, cb, optSelf) {
 };
 
 /**
- * [trigger description]
  * @param  {Object | goog.events.Event | null | string} event object
  * @return {boolean} If anyone called preventDefault on the event object
  *   (or if any of the handlers returns false) this will also return false.
@@ -103,3 +149,28 @@ app.Core.prototype.listen = function(event, cb, optSelf) {
 app.Core.prototype.trigger = function( event ) {
   return goog.events.dispatchEvent( this, event );
 };
+
+
+/**
+ * @param  {goog.events.ListenableKey} key the ksy.
+ * @param  {goog.events.ListenableKey } key The key from listen().
+ * @return {boolean} indicating whether the listener was there to remove.
+ */
+app.Core.prototype.unlisten = function( key ) {
+  return goog.events.unlistenByKey( key );
+};
+
+/**
+ * @param  {string=} optType Optionally narrow down to specific type.
+ * @return {number} Number of listeners removed.
+ */
+app.Core.prototype.removeAllListeners = function( optType ) {
+  return goog.events.removeAll( this, optType);
+};
+
+
+/**
+ * Synchronous (silent) initialization of the library.
+ * @type {app.Core}
+ */
+theApp = app.Core.getInstance();

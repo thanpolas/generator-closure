@@ -1,20 +1,42 @@
 /**
- * @fileoverview third-party deps loader.
+ * @fileoverview third-party deps loader. Works only for devel env.
  */
-goog.provide('app.vendor');
+goog.provide('ssd.vendor');
 
 
 if (!COMPILED) {
+
+  /**
+   *
+   *
+   *
+   * @type {Array} define the 3rd party deps.
+   *
+   *
+   */
+  ssd.vendor.files = [
+    'when.js',
+    'jQuery-1.9.1.js'
+  ];
+
+
+
+  //
+  //
+  //
+  // Nothing to see here, move on...
+  //
+  //
+
   /**
    * load third party dependencies.
    *
-   * @param  {[type]} deps [description]
-   * @param  {Object} deps key value, value being the url.
+   * @param  {Array} deps key value, value being the url.
    */
-  app.loadDeps = function(deps) {
-    goog.object.forEach(deps, function(src) {
-      app.writeScript(src);
-    });
+  ssd.vendor.loadDeps = function(deps) {
+    for(var i = 0, len = deps.length; i < len; i++) {
+      ssd.vendor.writeScript(deps[i]);
+    }
   };
 
   /**
@@ -23,7 +45,7 @@ if (!COMPILED) {
    * @param  {string} src A canonical path.
    * @param  {boolean=} optInline set to true to append inline javascript.
    */
-  app.writeScript = function (src, optInline) {
+  ssd.vendor.writeScript = function (src, optInline) {
 
     var out = '<script type="text/javascript"';
     if (!optInline) {
@@ -38,11 +60,11 @@ if (!COMPILED) {
 
   /**
    * Load vendor deps
-   * @return {[type]} [description]
+   * @param {Array} files
    */
-  app.vendor = function() {
+  ssd.vendor.go = function(files) {
 
-    var vendorFilepath = goog.basePath + goog.getPathFromDeps_('app.vendor');
+    var vendorFilepath = goog.basePath + goog.getPathFromDeps_('ssd.vendor');
 
     var vendorFilename = vendorFilepath.match(/[\.\w]+$/)[0];
 
@@ -50,12 +72,15 @@ if (!COMPILED) {
 
     var vendorPath = vendorFilepath.substr(0, ind);
 
+    var newFiles = [];
+
+    for (var i = 0, len = files.length; i < len; i++) {
+      newFiles.push(vendorPath + files[i]);
+    }
+
     // load third party deps
-    app.loadDeps({
-      //goog.basePath goog.getPathFromDeps_('app')
-      when: vendorPath + 'when.js'
-    });
+    ssd.vendor.loadDeps(newFiles);
   };
 
-  app.vendor();
+  ssd.vendor.go(ssd.vendor.files);
 }

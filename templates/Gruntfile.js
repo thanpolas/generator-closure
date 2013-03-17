@@ -23,7 +23,7 @@ module.exports = function (grunt) {
   var EXTERNS_PATH = 'build/externs/';
 
   // The path to the closure library
-  var CLOSURE_LIBRARY = 'closure-library/';
+  var CLOSURE_LIBRARY = 'app/closure-library';
 
   // define the main namespace of your app
   var ENTRY_POINT = 'app';
@@ -47,13 +47,21 @@ module.exports = function (grunt) {
           APP_PATH + '/**/*.js'
         ],
         tasks: ['livereload']
+      },
+      test: {
+        files: [
+          APP_PATH + '/**/*.js',
+          'test/**/*.js'
+        ],
+        tasks: ['livereload']
       }
     },
     connect: {
       options: {
         port: 9000,
         // change this to '0.0.0.0' to access the server from outside
-        hostname: 'localhost'
+        hostname: 'localhost',
+        keepalive: false
       },
       livereload: {
         options: {
@@ -72,7 +80,10 @@ module.exports = function (grunt) {
     },
     open: {
       server: {
-        path: 'http://localhost:<%%= connect.options.port %>'
+        path: 'http://localhost:<%= connect.options.port %>'
+      },
+      test: {
+        path: 'http://localhost:<%= connect.test.options.port %>/test/'
       }
     },
     clean: {
@@ -84,7 +95,7 @@ module.exports = function (grunt) {
       all: {
         options: {
           run: true,
-          urls: ['http://localhost:<%%= connect.options.port %>/index.html']
+          urls: ['http://localhost:<%= connect.options.port %>/index.html']
         }
       }
     },
@@ -104,7 +115,7 @@ module.exports = function (grunt) {
       },
       app: {
         options: {
-          root_with_prefix: ['"' + APP_PATH + ' ../../../' + APP_PATH + '"']
+          root_with_prefix: ['"' + APP_PATH + ' ../../../js"']
         },
         dest: '' + APP_PATH + '/deps-app.js'
       },
@@ -124,11 +135,11 @@ module.exports = function (grunt) {
     closureBuilder: {
       options: {
         closureLibraryPath: CLOSURE_LIBRARY,
-        inputs: ['' + APP_PATH + '/main.js'],
+        inputs: [APP_PATH + '/main.js'],
         compile: true,
         compilerFile: compiler.getPathSS()
       },
-      superstartup: {
+      app: {
         options: {
           compilerOpts: {
             compilation_level: 'ADVANCED_OPTIMIZATIONS',
@@ -159,42 +170,42 @@ module.exports = function (grunt) {
     //
     //
     compass: {
+      options: {
+        sassDir: 'app/styles',
+        cssDir: '.tmp/styles',
+        imagesDir: 'app/images',
+        javascriptsDir: 'app/scripts',
+        fontsDir: 'app/styles/fonts',
+        importPath: 'app/components',
+        relativeAssets: true
+      },
+      dist: {},
+      server: {
         options: {
-            sassDir: 'app/styles',
-            cssDir: '.tmp/styles',
-            imagesDir: 'app/images',
-            javascriptsDir: 'app/scripts',
-            fontsDir: 'app/styles/fonts',
-            importPath: 'app/components',
-            relativeAssets: true
-        },
-        dist: {},
-        server: {
-            options: {
-                debugInfo: true
-            }
+          debugInfo: true
         }
-    },
-    imagemin: {
-        dist: {
-            files: [{
-                expand: true,
-                cwd: 'app/images',
-                src: '{,*/}*.{png,jpg,jpeg}',
-                dest: '<%%= yeoman.dist %>/images'
-            }]
-        }
-    },
-    cssmin: {
-        dist: {
-            files: {
-                '<%%= yeoman.dist %>/styles/main.css': [
-                    '.tmp/styles/{,*/}*.css',
-                    'app/styles/{,*/}*.css'
-                ]
-            }
-        }
+      }
+  },
+  imagemin: {
+    dist: {
+      files: [{
+        expand: true,
+        cwd: 'app/images',
+        src: '{,*/}*.{png,jpg,jpeg}',
+        dest: '<%= yeoman.dist %>/images'
+      }]
     }
+  },
+  cssmin: {
+    dist: {
+      files: {
+        '<%= yeoman.dist %>/styles/main.css': [
+          '.tmp/styles/{,*/}*.css',
+          'app/styles/{,*/}*.css'
+        ]
+      }
+    }
+  }
   });
 
   //
@@ -208,18 +219,22 @@ module.exports = function (grunt) {
   grunt.renameTask('regarde', 'watch');
 
   grunt.registerTask('server', function (target) {
-      if (target === 'dist') {
-          return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
+      if (target === 'test') {
+          return grunt.task.run([
+            'clean:server',
+            'livereload-start',
+            'connect:test',
+            'open:test',
+            'watch:test'
+          ]);
       }
 
       grunt.task.run([
           'clean:server',
-          'coffee:dist',
-          'compass:server',
           'livereload-start',
           'connect:livereload',
-          'open',
-          'watch'
+          'open:server',
+          'watch:livereload'
       ]);
   });
 
@@ -230,10 +245,21 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
-      'clean:dist'
+      'clean:dist',
+      'closureBuilder:app'
+  ]);
+
+  grunt.registerTask('deps', [
+    'closureDepsWriter:app',
+    'closureDepsWriter:bddTest',
+    'closureDepsWriter:unitTest'
   ]);
 
   grunt.registerTask('default', [
       'deps'
   ]);
+
+  grunt.registerTask('zit', function(){
+    console.log('tpl:', grunt.template.process('<%= connect.test.options.port %>'));
+  });
 };

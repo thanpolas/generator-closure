@@ -125,8 +125,7 @@ ssd.eventBackPipe = function(eventObj, data) {
       return ar === jQuery;
     }
     return ar instanceof jQuery;
-  } catch(e) {
-    ssd.error(e);
+  } catch(ex) {
     return false;
   }
 }; // method ssd.isjQ

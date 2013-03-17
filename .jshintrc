@@ -76,6 +76,8 @@
       "goog",
       "COMPILED",
       "app",
-      "ssd"
+      "ssd",
+      "theApp",
+      "when"
   ]
 }

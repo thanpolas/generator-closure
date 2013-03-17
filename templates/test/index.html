@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="vendor/mocha.css" />
+  </head>
+  <body>
+    <div id="tests-container" style="display:none">
+
+    <!-- Insert here any required markup for the tests -->
+
+
+
+    <!-- Up to here lads... FB root element'z a gift -->
+      <div id="fb-root"></div>
+    </div>
+
+  <div><span>
+    <script type="text/javascript">
+    var loc = window.location.search;
+    var IS_COMPILED = !!loc.match(/compiled/);
+    var DEBUG = !!loc.match(/debug/);
+    var UNIT_TESTS = !!loc.match(/unit/);
+
+    (function(){
+      var anchorBdd = {
+        href: 'index.html?compiled=true',
+        value: 'Compiled Mode'
+      };
+      if(IS_COMPILED) {
+        anchorBdd.href = 'index.html';
+        anchorBdd.value = 'Uncompiled Mode';
+      }
+
+      if(UNIT_TESTS) {
+        document.write('<a href="/test">BDD Tests</a>');
+      } else {
+        document.write('<a href="/test/?unit=1">Unit Tests</a> | ');
+        document.write('<a href="' + anchorBdd.href + '">' + anchorBdd.value + '<\/a>');
+
+      }
+
+    })();
+    </script>
+  </span></div>
+
+    <div id="mocha"></div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/app/js/vendor/jquery-1.9.1.js"><\/script>')</script>
+    <script src="vendor/mocha.js"></script>
+    <script src="vendor/sinon-1.6.0.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/chai-as-promised/lib/chai-as-promised.js"></script>
+    <script>
+(function(){
+
+  if(IS_COMPILED) {
+    document.write("<script src='..\/..\/app\/jsc\/app.js'><\/script>");
+    document.write('<script src="..\/..\/app\/closure-library\/closure\/goog\/base.js"><\/script>');
+  } else {
+    document.write('<script src="..\/..\/app\/closure-library\/closure\/goog\/base.js"><\/script>');
+    document.write('<script src="..\/..\/app\/js\/deps-app.js"><\/script>');
+    document.write('<script>goog.DEBUG = DEBUG;<\/script>');
+    document.write('<script src="..\/..\/app\/js\/main.js"><\/script>');
+  }
+
+  if(UNIT_TESTS) {
+    document.write('<script src="unit/deps-test-tdd.js"><\/script>');
+    document.write('<script src="unit/bootstrap.js"><\/script>');
+  } else {
+    document.write('<script src="bdd/deps-test-bdd.js"><\/script>');
+    document.write('<script src="bdd/bootstrap.js"><\/script>');
+  }
+
+
+
+
+})();
+    </script>
+    <script>
+      if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
+        else { mocha.run(); }
+    </script>
+  </body>
+</html>
