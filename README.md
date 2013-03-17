@@ -180,7 +180,7 @@ Put helpers here. A set of some utility functions is included in the `ssd.helper
 
 #### `libs/`
 
-Stand alone closure libraries for your project. The third-party loader is in this folder: `libs/vendor.main.js`. Read more about it in the Third-party dependencies section.
+Stand alone closure libraries for your project. The third-party loader is in this folder: `libs/vendor.loader.js`. Read more about it in the Third-party dependencies section.
 
 The file `module.js` is an empty class that all other applications extend, it can be accessed is the `app.Module` namespace. The `app.Module` class extends [`goog.events.EventTarget`][eventtarget] which extends [`goog.Disposable`][goog.Disposable]. This provides with all your classes event and disposing capabilities.
 
@@ -238,7 +238,7 @@ This is more of a technique, rather than a stand alone library. The library itse
 
 ### Configure Third-Party for Development
 
-You need to edit the third-party library file which is located at: `app/js/libs/vendor.main.js`.
+You need to edit the third-party library file which is located at: `app/js/libs/vendor.loader.js`.
 
 ```js
   /**

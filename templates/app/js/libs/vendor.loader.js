@@ -72,7 +72,7 @@ if (!COMPILED) {
     var newFiles = [];
 
     for (var i = 0, len = files.length; i < len; i++) {
-      newFiles.push(vendorPath + files[i]);
+      newFiles.push(vendorPath + '../vendor/' + files[i]);
     }
 
     // load third party deps

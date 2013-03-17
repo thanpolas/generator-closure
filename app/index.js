@@ -48,6 +48,6 @@ Generator.prototype.scaffold = function scaffold() {
   // templating copy
   this.template('Gruntfile.js', 'Gruntfile.js');
   this.template('README.md', 'README.md');
-  this.template('LICENSE', 'LICENSE');
+  this.template('LICENSE-MIT', 'LICENSE-MIT');
 
 };
