@@ -77,8 +77,16 @@
 })();
     </script>
     <script>
+
       if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
-        else { mocha.run(); }
+        else if (!window.PHANTOMJS) {
+          // phantomJS is a little corky, will issue the
+          // run method from the grunt conf and this
+          // run invocation will break up the tests.
+          //
+          // But is required for browser testing.
+          mocha.run();
+        }
     </script>
   </body>
 </html>

@@ -119,7 +119,7 @@ describe('Core API :: appOne()', function(){
     //
     describe('The init callback', function() {
       it('should have triggered the init callback', function() {
-        expect( appCallback.callCount ).to.be.true;
+        expect( appCallback.calledOnce ).to.be.true;
       });
     });
 

@@ -99,10 +99,11 @@ module.exports = function (grunt) {
       all: {
         options: {
           run: true,
+          ignoreLeaks: false,
           urls: [
-            'http://localhost:<%= connect.test.options.port %>/test/index.html'
-            //'http://localhost:<%= connect.test.options.port %>/test/index.html?compiled=true',
-            //'http://localhost:<%= connect.test.options.port %>/test/index.html?unit=true'
+            'http://localhost:<%= connect.test.options.port %>/test/index.html',
+            'http://localhost:<%= connect.test.options.port %>/test/index.html?compiled=true',
+            'http://localhost:<%= connect.test.options.port %>/test/index.html?unit=true'
           ]
         }
       }
