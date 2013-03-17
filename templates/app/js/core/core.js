@@ -1,9 +1,8 @@
 /**
  * @fileoverview the core class of the application.
  */
-goog.provide('app');
 goog.provide('app.Core');
-goog.provide('theApp');
+goog.provide('appOne');
 
 goog.require('app.Module');
 goog.require('ssd.helpers');
@@ -171,6 +170,7 @@ app.Core.prototype.removeAllListeners = function( optType ) {
 
 /**
  * Synchronous (silent) initialization of the library.
- * @type {app.Core}
+ *
+ *
  */
-theApp = app.Core.getInstance();
+appOne = app.Core.getInstance();

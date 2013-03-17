@@ -11,6 +11,8 @@ goog.require('goog.Uri');
 goog.require('goog.net.XhrIo');
 goog.require('app.sync.Response');
 
+goog.require('ssd.helpers');
+
 /**
  * @enum {string}
  */
@@ -36,7 +38,7 @@ app.ajax.send = function( url, opt_callback, opt_method, opt_content,
    */
   var cb = function appAjaxSend(ev){
 
-    var origCb = opt_callback || app.noop;
+    var origCb = opt_callback || ssd.noop;
 
     /** @type {app.ajax} */
     var xhr = ev.target;

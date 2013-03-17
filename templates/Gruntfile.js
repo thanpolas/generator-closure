@@ -34,7 +34,15 @@ module.exports = function (grunt) {
   // the compiled file
   var DEST_COMPILED = 'app/jsc/app.js';
 
-
+  // the file globbing pattern for vendor file uglification.
+  var vendorFiles = [
+    // all files JS in vendor folder
+    APP_PATH + '/vendor/*.js',
+    // except the closure loader
+    '!' + APP_PATH + '/vendor/vendor.main.js',
+    // and jQuery, we'll use a CDN for it.
+    '!' + APP_PATH + '/vendor/jQuery*'
+  ];
 
 
   // load all grunt tasks
@@ -90,6 +98,20 @@ module.exports = function (grunt) {
       dist: ['.tmp'],
       server: '.tmp'
     },
+    uglify: {
+      vendor: {
+        files: {
+          '.tmp/vendor.js': vendorFiles
+        }
+      }
+    },
+    concat: {
+        production: {
+          src: ['.tmp/vendor.js', '.tmp/compiled.js'],
+          dest: DEST_COMPILED
+        }
+    },
+
 
     mocha: {
       all: {
@@ -137,26 +159,31 @@ module.exports = function (grunt) {
         closureLibraryPath: CLOSURE_LIBRARY,
         inputs: [APP_PATH + '/main.js'],
         compile: true,
-        compilerFile: compiler.getPathSS()
+        compilerFile: compiler.getPathSS(),
+        compilerOpts: {
+          compilation_level: 'ADVANCED_OPTIMIZATIONS',
+          externs: [EXTERNS_PATH + '*.js'],
+          define: [
+            '\'goog.DEBUG=false\''
+            ],
+          warning_level: 'verbose',
+          jscomp_off: ['checkTypes', 'fileoverviewTags'],
+          summary_detail_level: 3,
+          only_closure_dependencies: null,
+          closure_entry_point: ENTRY_POINT
+    //      output_wrapper: '(function(){%output%}).call(this);'
+        }
       },
       app: {
+        src: [APP_PATH, CLOSURE_LIBRARY],
+        dest: '.tmp/compiled.js'
+      },
+      debug: {
         options: {
-          compilerOpts: {
-            compilation_level: 'ADVANCED_OPTIMIZATIONS',
-            externs: [EXTERNS_PATH + '*.js'],
-            define: [
-              '\'goog.DEBUG=false\''
-              ],
-            warning_level: 'verbose',
-            jscomp_off: ['checkTypes', 'fileoverviewTags'],
-            summary_detail_level: 3,
-            only_closure_dependencies: null,
-            closure_entry_point: ENTRY_POINT,
-            output_wrapper: '(function(){%output%}).call(this);'
-          }
+          compilerFile: compiler.getPath()
         },
         src: [APP_PATH, CLOSURE_LIBRARY],
-        dest: DEST_COMPILED
+        dest: '.tmp/compiled.debug.js'
       }
     },
 
@@ -219,34 +246,36 @@ module.exports = function (grunt) {
   grunt.renameTask('regarde', 'watch');
 
   grunt.registerTask('server', function (target) {
-      if (target === 'test') {
-          return grunt.task.run([
-            'clean:server',
-            'livereload-start',
-            'connect:test',
-            'open:test',
-            'watch:test'
-          ]);
-      }
-
-      grunt.task.run([
-          'clean:server',
-          'livereload-start',
-          'connect:livereload',
-          'open:server',
-          'watch:livereload'
+    if (target === 'test') {
+      return grunt.task.run([
+        'clean:server',
+        'livereload-start',
+        'connect:test',
+        'open:test',
+        'watch:test'
       ]);
+    }
+
+    grunt.task.run([
+      'clean:server',
+      'livereload-start',
+      'connect:livereload',
+      'open:server',
+      'watch:livereload'
+    ]);
   });
 
   grunt.registerTask('test', [
-      'clean:server',
-      'connect:test',
-      'mocha'
+    'clean:server',
+    'connect:test',
+    'mocha'
   ]);
 
   grunt.registerTask('build', [
-      'clean:dist',
-      'closureBuilder:app'
+    'clean:dist',
+    'uglify:vendor',
+    'closureBuilder:app',
+    'concat:production'
   ]);
 
   grunt.registerTask('deps', [

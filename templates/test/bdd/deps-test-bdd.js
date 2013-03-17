@@ -9,4 +9,4 @@ goog.addDependency('../../../../../test/fixtures/udo.fixture.js', ['app.test.fix
 goog.addDependency('../../../../../test/mocks/configClass.mock.js', ['ssd.test.unit.configClass'], ['ssd.Config', 'ssd.Module']);
 goog.addDependency('../../../../../test/mocks/network.mock.js', ['ssd.test.mock.net'], []);
 goog.addDependency('../../../../../test/unit/bootstrap.js', ['app.test.unit.bootstrap'], ['app.test.helpers', 'app.test.main']);
-goog.addDependency('../../../../../test/unit/helpers/helpers.test.js', ['app.test.helpers'], []);
+goog.addDependency('../../../../../test/unit/helpers/helpers.test.js', ['app.test.helpers'], ['ssd.helpers']);

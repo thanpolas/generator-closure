@@ -1,7 +1,7 @@
 /**
- * @fileoverview Master bootstrap file, no need to change provide's name.
+ * @fileoverview Master bootstrap file.
  */
-goog.provide('___bootstrap___');
+goog.provide('app');
 
 // sequence matters
 goog.require('ssd.vendor');

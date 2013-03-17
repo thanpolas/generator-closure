@@ -6,19 +6,18 @@ goog.provide('app.exports');
 goog.require('app.Core');
 goog.require('app.sync');
 goog.require('app.ajax');
+goog.require('appOne');
 
 // core
-goog.exportSymbol('appOne', theApp);
-goog.exportSymbol('appOne.init', theApp.init);
+goog.exportSymbol('appOne', appOne);
+goog.exportSymbol('appOne.init', appOne.init);
 
 // net
-goog.exportSymbol('appOne.ajax', app.ajax);
 goog.exportSymbol('appOne.ajax.send', app.ajax.send);
-goog.exportSymbol('appOne.sync', app.sync);
 goog.exportSymbol('appOne.sync.send', app.sync.send);
 
 // events
-goog.exportSymbol('appOne.listen', app.listen);
-goog.exportSymbol('appOne.trigger', app.trigger);
-goog.exportSymbol('appOne.unlisten', app.unlisten);
-goog.exportSymbol('appOne.removeAllListeners', app.removeAllListeners);
+goog.exportSymbol('appOne.listen', appOne.listen);
+goog.exportSymbol('appOne.trigger', appOne.trigger);
+goog.exportSymbol('appOne.unlisten', appOne.unlisten);
+goog.exportSymbol('appOne.removeAllListeners', appOne.removeAllListeners);

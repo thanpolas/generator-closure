@@ -3,7 +3,7 @@
 goog.addDependency('../../../js/app/showcase-debug.js', ['app.Showdebug'], ['goog.debug.FancyWindow', 'goog.debug.LogManager', 'goog.debug.Logger']);
 goog.addDependency('../../../js/app/ui-events.js', ['app.ui.Debug'], ['app.Module', 'app.Showdebug', 'ssd.debug']);
 goog.addDependency('../../../js/core/core.js', ['app', 'app.Core', 'theApp'], ['app.Module', 'app.ui.Debug', 'ssd.helpers', 'ssd.invocator']);
-goog.addDependency('../../../js/core/exports.js', ['app.exports'], ['app.Core', 'app.ajax', 'app.sync']);
+goog.addDependency('../../../js/core/exports.js', ['app.exports'], ['app.Core', 'app.ajax', 'app.sync', 'theApp']);
 goog.addDependency('../../../js/core/response.core.js', ['app.Response'], ['goog.events.Event', 'goog.object']);
 goog.addDependency('../../../js/helpers/debug.js', ['ssd.debug'], ['goog.debug', 'goog.debug.FancyWindow', 'goog.debug.LogManager', 'goog.debug.Logger']);
 goog.addDependency('../../../js/helpers/helpers.js', ['ssd.helpers'], ['goog.array', 'goog.json', 'goog.object']);

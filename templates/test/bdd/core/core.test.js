@@ -17,13 +17,7 @@ describe('Core API :: appOne()', function(){
       expect( appOne.init ).to.be.a('function');
     });
 
-    it('should have an isReady method', function() {
-      expect( appOne.isReady ).to.be.a('function');
-    });
 
-    it('should report a ready state of false', function(){
-      expect( appOne.isReady() ).to.be.false;
-    });
   });
   describe('Invoke appOne() and listen for all events and callbacks', function() {
 
@@ -55,10 +49,6 @@ describe('Core API :: appOne()', function(){
       it('should have not made any sync calls', function() {
         expect( stubSync.called ).to.be.false;
         stubSync.restore();
-      });
-
-      it('should report a ready state of true', function(){
-        expect( appOne.isReady() ).to.be.true;
       });
 
       it('should accept a callback that immediately invokes', function() {
