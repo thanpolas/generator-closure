@@ -8,29 +8,29 @@ var Generator = module.exports = function Generator() {
   generator.Base.apply(this, arguments);
   // this.option('flag', { desc: 'Desc for flag', ...})
   // this.argument('filename', { desc: 'Desc for filename argument', ...})
+  // this.hookFor('webapp', { args:['--compassBootstrap'] });
 
-  this.hookFor('webapp', { args:['--compassBootstrap'] });
+
+  this.sourceRoot(path.join(__dirname, '../templates'));
+
 
 };
 
 util.inherits(Generator, generator.Base);
 
-// Copies the entire template directory (with `.`, meaning the
-// templates/ root) to the specified location
 Generator.prototype.scaffold = function scaffold() {
-  this.directory('.', 'html');
 
-  this.sourceRoot(path.join(__dirname, '../templates'));
+  // do plain copy operations
+  this.directory('app');
+  this.directory('build');
+  this.directory('test');
 
-  this.log.writeln('Uhhhh duh');
-
-  // this.directory('js');
-  // this.copy('index.html', 'index.html');
-
-
-  // var gen = this.invoke('webapp', {
-  //   compassBootstrap: true,
-  //   includeRequireJS: true
-  // });
+  this.copy('_editorconfig', '.editorconfig');
+  this.copy('_gitignore', '.gitignore');
+  this.copy('_jshintrc', '.jshintrc');
+  this.copy('_package.json', 'package.json');
+  this.copy('Gruntfile.js', 'Gruntfile.js');
+  this.copy('NOTICE.md', 'NOTICE.md');
+  this.copy('Gruntfile.js', 'Gruntfile.js');
 
 };
