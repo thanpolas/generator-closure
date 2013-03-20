@@ -43,6 +43,7 @@ npm install
 * 52 BDD and TDD tests both for your development and compiled code.
 * Full open source boilerplace (README, LICENSE, .editorconfig, etc).
 * Vanilla and a [special edition][ss-compiler] Closure Compiler that strips off all `logger` calls from your production code. (The special edition is used).
+* Sourcemap file for your compiled code.
 * A set of Grunt Tasks that will:
   - Manage your dependencies.
   - Compile your code.
@@ -336,7 +337,11 @@ Closure is so vast and we need to have a common place to document all the techni
 The `ssd` namespace that's included in some libraries stands for SuperStartup Development. It is the development namespace used by the [Superstartup][] library.
 
 ## Release History
-- **v0.1.0**, *Late Mar 2013*
+
+- **v0.1.1**, *20 Mar 2013*
+  - Added Source Map option
+  - Minor typo fixes
+- **v0.1.0**, *Mid Mar 2013*
   - Big Bang
 
 ## License

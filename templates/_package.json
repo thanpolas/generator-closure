@@ -16,9 +16,9 @@
   "main": "app/index.js",
   "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.4.0",
+    "grunt": "~0.4.1",
     "superstartup-closure-compiler": "~0.1.4",
-    "grunt-closure-tools": "~0.7.5",
+    "grunt-closure-tools": "~0.7.7",
     "grunt-usemin": "~0.1.10",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-concat": "~0.1.3",

@@ -42,6 +42,19 @@ module.exports = function (grunt) {
     '!' + APP_PATH + '/vendor/jQuery*'
   ];
 
+  // The location of the source map
+  var SOURCE_MAP = 'app/jsc/sourcemap.js.map';
+
+  // This sting will wrap your code marked as %output%
+  // Take care to edit the sourcemap path
+  var OUTPUT_WRAPPER = '(function(){%output%}).call(this);\n' +
+    '//@sourceMappingURL=/jsc/sourcemap.js.map\n';
+
+
+  //
+  //
+  // Start Gruntconfig
+  //
 
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -158,7 +171,10 @@ module.exports = function (grunt) {
           summary_detail_level: 3,
           only_closure_dependencies: null,
           closure_entry_point: ENTRY_POINT,
-          output_wrapper: '(function(){%output%}).call(this);'
+          create_source_map: SOURCE_MAP,
+          source_map_format: 'V3',
+          output_wrapper: OUTPUT_WRAPPER
+
         }
       },
       app: {
@@ -294,7 +310,4 @@ module.exports = function (grunt) {
       'deps'
   ]);
 
-  grunt.registerTask('zit', function(){
-    console.log('tpl:', grunt.template.process('<%%= connect.test.options.port %>'));
-  });
 };
