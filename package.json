@@ -16,8 +16,8 @@
     "boilerplate",
     "closure library"
   ],
-  "homepage": "https://github.com/thanpolas/generator-closure",
-  "bugs": "https://github.com/thanpolas/generator-closure/issues",
+  "homepage": "https://github.com/closureplease/generator-closure",
+  "bugs": "https://github.com/closureplease/generator-closure/issues",
   "author": {
     "name": "Thanasis Polychronakis",
     "email": "thanpolas@gmail.com",
@@ -29,7 +29,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/thanpolas/generator-closure.git"
+    "url": "git://github.com/closureplease/generator-closure.git"
   },
   "dependencies": {
     "yeoman-generator": "~0.10.2"
