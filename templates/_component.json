@@ -4,8 +4,9 @@
   "ignore": ["test/"],
   "dependencies": {
     "modernizr": "~2.6.2",
-    "jquery": "~1.9.1",
-    "closure-helpers": "~0.0.2"
+    "jquery": "~1.9.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "closure-helpers": "~0.0.2"
+  }
 }

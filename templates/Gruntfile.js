@@ -27,10 +27,10 @@ module.exports = function (grunt) {
     externsPath: 'build/externs/',
 
     // define the main namespace of your app.
-    entryPoint: '<%= closure.basePath %>/',
+    entryPoint: 'app',
 
     // The path to the closure library
-    closureLibrary: '<%= closure.closurePath %>/closure-library',
+    closureLibrary: '<%= closure.closurePath %>closure-library',
 
     // the compiled file
     destCompiled: '<%= closure.distPath %>/app.js',

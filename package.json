@@ -33,7 +33,9 @@
   },
   "dependencies": {
     "yeoman-generator": "~0.10.2",
-    "colorplus": "~0.2.4"
+    "colorplus": "~0.2.4",
+    "color": "~0.4.2",
+    "colors": "~0.6.0-1"
   },
   "devDependencies": {},
   "engines": {

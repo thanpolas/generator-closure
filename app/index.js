@@ -14,7 +14,7 @@ var Generator = module.exports = function Generator() {
   this.closure.basePath = 'app';
   this.closure.appPath = 'app/js';
   this.closure.sourceRel = 'js';
-  this.closure.closurePath = 'app';
+  this.closure.closurePath = 'app/';
   this.closure.distPath = 'app/jsc';
 
 };
@@ -35,6 +35,8 @@ Generator.prototype.scaffold = function scaffold() {
   this.copy('bowerrc', '.bowerrc');
   this.copy('_component.json', 'component.json');
 
+  // copy web deps
+  this.copy('_fragments/_deps.web.js', 'app/js/deps.js');
 
   // templating copy
   this.template('Gruntfile.js', 'Gruntfile.js');
