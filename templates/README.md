@@ -26,7 +26,7 @@ npm install <%= _.slugify(appname) %> --save-dev
   - Big Bang
 
 ## License
-Copyright (c) <%= (new Date).toString().split(' ')[1] %> ME PRETTY
+Copyright (c) <%= (new Date).toString().split(' ')[3] %> ME PRETTY
 Licensed under the [MIT](LICENSE-MIT).
 
 <sup>[↑ Back to TOC](#table-of-contents)</sup>

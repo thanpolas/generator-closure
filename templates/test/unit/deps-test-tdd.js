@@ -3,8 +3,8 @@
 goog.addDependency('../../../../../test/bdd/bootstrap.js', ['app.test.bootstrap'], ['app.test.core', 'app.test.event.api', 'app.test.fixture.userOne', 'app.test.main']);
 goog.addDependency('../../../../../test/bdd/core/core.test.js', ['app.test.core'], ['app.test.fixture.event']);
 goog.addDependency('../../../../../test/bdd/events/eventsAPI.test.js', ['app.test.event.api'], []);
-goog.addDependency('../../../../../test/bdd/main.js', ['app.test.main'], ['app.test.fixture.userOne']);
 goog.addDependency('../../../../../test/fixtures/events.fixture.js', ['app.test.fixture.event'], []);
 goog.addDependency('../../../../../test/fixtures/udo.fixture.js', ['app.test.fixture.userOne'], []);
+goog.addDependency('../../../../../test/lib/main.js', ['app.test.main'], ['app.test.fixture.userOne']);
 goog.addDependency('../../../../../test/unit/bootstrap.js', ['app.test.unit.bootstrap'], ['app.test.helpers', 'app.test.main']);
 goog.addDependency('../../../../../test/unit/helpers/helpers.test.js', ['app.test.helpers'], ['ssd.helpers']);
