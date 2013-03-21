@@ -13,7 +13,7 @@ if (!COMPILED) {
    */
   ssd.vendor.files = [
     'when.js',
-    'jQuery-1.9.1.js'
+    '../../components/jquery/jquery.js'
   ];
 
 

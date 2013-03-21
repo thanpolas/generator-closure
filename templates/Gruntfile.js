@@ -38,7 +38,8 @@ module.exports = function (grunt) {
   var vendorFiles = [
     // all files JS in vendor folder
     APP_PATH + '/vendor/*.js',
-    // and jQuery, we'll use a CDN for it.
+
+    // and do not include jQuery, we'll use a CDN for it.
     '!' + APP_PATH + '/vendor/jQuery*'
   ];
 
@@ -47,8 +48,8 @@ module.exports = function (grunt) {
 
   // This sting will wrap your code marked as %output%
   // Take care to edit the sourcemap path
-  var OUTPUT_WRAPPER = '(function(){%output%}).call(this);\n' +
-    '//@sourceMappingURL=/jsc/sourcemap.js.map\n';
+  var OUTPUT_WRAPPER = '(function(){%output%}).call(this);' +
+    '//@sourceMappingURL=/jsc/sourcemap.js.map';
 
 
   //
