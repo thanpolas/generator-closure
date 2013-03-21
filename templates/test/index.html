@@ -48,7 +48,12 @@
 
     <div id="mocha"></div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="/app/js/vendor/jquery-1.9.1.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="<%= closure.basePath %>components/jquery/jquery.js"><\/script>')</script>
+    <script>
+      if (!window.jQuery) {
+        document.write('<div><span style="font-size:30px; color: red;">Could not load jQuery! Make sure you have it installed via bower: </ br> <b>bower install</b></span></div>');
+      }
+    </script>
     <script src="vendor/mocha.js"></script>
     <script src="vendor/sinon-1.6.0.js"></script>
     <script src="../node_modules/chai/chai.js"></script>
@@ -57,13 +62,26 @@
 (function(){
 
   if(IS_COMPILED) {
-    document.write("<script src='..\/..\/app\/jsc\/app.js'><\/script>");
-    document.write('<script src="..\/..\/app\/closure-library\/closure\/goog\/base.js"><\/script>');
+<% if (closure.web) {%>
+    document.write("<script src='..\/<%= closure.basePath %>\/jsc\/app.js'><\/script>");
+    document.write('<script src="..\/app\/closure-library\/closure\/goog\/base.js"><\/script>');
+<% } else { %>
+    document.write("<script src='..\/<%= closure.distPath %>\/app.js'><\/script>");
+    document.write('<script src="..\/closure-library\/closure\/goog\/base.js"><\/script>');
+<% } %>
   } else {
-    document.write('<script src="..\/..\/app\/closure-library\/closure\/goog\/base.js"><\/script>');
-    document.write('<script src="..\/..\/app\/js\/deps-app.js"><\/script>');
+<% if (closure.web) {%>
+    document.write('<script src="..\/app\/closure-library\/closure\/goog\/base.js"><\/script>');
+    document.write('<script src="..\/<%= closure.basePath %>\/<%= closure.sourceRel %>\/deps.js"><\/script>');
     document.write('<script>goog.DEBUG = DEBUG;<\/script>');
-    document.write('<script src="..\/..\/app\/js\/main.js"><\/script>');
+    document.write('<script src="..\/<%= closure.basePath %>\/<%= closure.sourceRel %>\/main.js"><\/script>');
+<% } else { %>
+    document.write('<script src="..\/closure-library\/closure\/goog\/base.js"><\/script>');
+    document.write('<script src="..\/<%= closure.appPath %>\/deps.js"><\/script>');
+    document.write('<script>goog.DEBUG = DEBUG;<\/script>');
+    document.write('<script src="..\/<%= closure.appPath %>\/main.js"><\/script>');
+<% } %>
+
   }
 
   if(UNIT_TESTS) {

@@ -14,49 +14,55 @@ module.exports = function (grunt) {
 
   //
   //
-  // Configure tasks
+  // Config basic parameters
   //
   //
   //
+  var CONF = {
+    // the base file of your project. The full path will result by concatenating
+    // appPath + bootstrapFile
+    bootstrapFile: 'main.js',
 
-  // The folder that contains all the externs files.
-  var EXTERNS_PATH = 'build/externs/';
+    // The folder that contains all the externs files.
+    externsPath: 'build/externs/',
 
-  // define the main namespace of your app
-  var ENTRY_POINT = 'app';
+    // define the main namespace of your app.
+    entryPoint: '<%= closure.basePath %>/',
 
-  // The path to the closure library
-  var CLOSURE_LIBRARY = 'app/closure-library';
+    // The path to the closure library
+    closureLibrary: '<%= closure.closurePath %>/closure-library',
 
-  // the compiled file
-  var DEST_COMPILED = 'app/jsc/app.js';
+    // the compiled file
+    destCompiled: '<%= closure.distPath %>/app.js',
 
-  // define the path to the app
-  var APP_PATH = 'app/js';
+    // define the path to the app
+    appPath: '<%= closure.appPath %>/',
+
+    // The location of the source map
+    sourceMap: '<%= closure.distPath %>/sourcemap.js.map',
+
+    // This sting will wrap your code marked as %output%
+    // Take care to edit the sourcemap path
+    outputWrapper: '(function(){%output%}).call(this);' +
+      '//@sourceMappingURL=<%= closure.distPath %>/sourcemap.js.map'
+  };
 
   // the file globbing pattern for vendor file uglification.
-  var vendorFiles = [
-    // all files JS in vendor folder
-    APP_PATH + '/vendor/*.js',
+  CONF.vendorFiles = [
+      // all files JS in vendor folder
+      CONF.appPath + '/vendor/*.js',
 
-    // and do not include jQuery, we'll use a CDN for it.
-    '!' + APP_PATH + '/vendor/jQuery*'
-  ];
+      // and do not include jQuery, we'll use a CDN for it.
+      '!' + CONF.appPath + '/vendor/jQuery*'
+    ];
 
-  // The location of the source map
-  var SOURCE_MAP = 'app/jsc/sourcemap.js.map';
-
-  // This sting will wrap your code marked as %output%
-  // Take care to edit the sourcemap path
-  var OUTPUT_WRAPPER = '(function(){%output%}).call(this);' +
-    '//@sourceMappingURL=/jsc/sourcemap.js.map';
 
 
   //
   //
   // Start Gruntconfig
   //
-
+  //
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
@@ -64,13 +70,13 @@ module.exports = function (grunt) {
     watch: {
       livereload: {
         files: [
-          APP_PATH + '/**/*.js'
+          CONF.appPath + '/**/*.js'
         ],
         tasks: ['livereload']
       },
       test: {
         files: [
-          APP_PATH + '/**/*.js',
+          CONF.appPath + '/**/*.js',
           'test/**/*.js'
         ],
         tasks: ['livereload']
@@ -86,7 +92,7 @@ module.exports = function (grunt) {
       livereload: {
         options: {
           middleware: function (connect) {
-            return [ lrSnippet, mountFolder(connect, 'app')];
+            return [ lrSnippet, mountFolder(connect, '<%= closure.basePath %>/')];
           }
         }
       },
@@ -133,14 +139,13 @@ module.exports = function (grunt) {
     //
     closureDepsWriter: {
       options: {
-        closureLibraryPath: CLOSURE_LIBRARY
-
+        closureLibraryPath: CONF.closureLibrary
       },
       app: {
         options: {
-          root_with_prefix: ['"' + APP_PATH + ' ../../../js"']
+          root_with_prefix: ['"' + CONF.appPath + ' ../../../<%= closure.sourceRel %>"']
         },
-        dest: '' + APP_PATH + '/deps-app.js'
+        dest: '' + CONF.appPath + '/deps.js'
       },
       bddTest: {
         options: {
@@ -157,13 +162,13 @@ module.exports = function (grunt) {
     },
     closureBuilder: {
       options: {
-        closureLibraryPath: CLOSURE_LIBRARY,
-        inputs: [APP_PATH + '/main.js'],
+        closureLibraryPath: CONF.closureLibrary,
+        inputs: [CONF.appPath + CONF.bootstrapFile],
         compile: true,
         compilerFile: compiler.getPathSS(),
         compilerOpts: {
           compilation_level: 'ADVANCED_OPTIMIZATIONS',
-          externs: [EXTERNS_PATH + '*.js'],
+          externs: [CONF.externsPath + '*.js'],
           define: [
             '\'goog.DEBUG=false\''
             ],
@@ -171,22 +176,22 @@ module.exports = function (grunt) {
           jscomp_off: ['checkTypes', 'fileoverviewTags'],
           summary_detail_level: 3,
           only_closure_dependencies: null,
-          closure_entry_point: ENTRY_POINT,
-          create_source_map: SOURCE_MAP,
+          closure_entry_point: CONF.entryPoint,
+          create_source_map: CONF.sourceMap,
           source_map_format: 'V3',
-          output_wrapper: OUTPUT_WRAPPER
+          output_wrapper: CONF.outputWrapper
 
         }
       },
       app: {
-        src: [APP_PATH, CLOSURE_LIBRARY],
+        src: [CONF.appPath, CONF.closureLibrary],
         dest: 'temp/compiled.js'
       },
       debug: {
         options: {
           compilerFile: compiler.getPath()
         },
-        src: [APP_PATH, CLOSURE_LIBRARY],
+        src: [CONF.appPath, CONF.closureLibrary],
         dest: 'temp/compiled.debug.js'
       }
     },
@@ -199,18 +204,16 @@ module.exports = function (grunt) {
     uglify: {
       vendor: {
         files: {
-          'temp/vendor.js': vendorFiles
+          'temp/vendor.js': CONF.vendorFiles
         }
       }
     },
     concat: {
         production: {
           src: ['temp/vendor.js', 'temp/compiled.js'],
-          dest: DEST_COMPILED
+          dest: CONF.destCompiled
         }
     },
-
-
 
 
     //
@@ -219,44 +222,29 @@ module.exports = function (grunt) {
     // Optional boilerplate tasks
     //
     //
-    compass: {
-      options: {
-        sassDir: 'app/styles',
-        cssDir: 'temp/styles',
-        imagesDir: 'app/images',
-        javascriptsDir: 'app/scripts',
-        fontsDir: 'app/styles/fonts',
-        importPath: 'app/components',
-        relativeAssets: true
-      },
-      dist: {},
-      server: {
-        options: {
-          debugInfo: true
+    imagemin: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: 'app/images',
+          src: '{,*/}*.{png,jpg,jpeg}',
+          dest: 'app/images'
+        }]
+      }
+    },
+    cssmin: {
+      dist: {
+        files: {
+          'app/styles/main.css': [
+            'temp/styles/{,*/}*.css',
+            'app/styles/{,*/}*.css'
+          ]
         }
       }
-  },
-  imagemin: {
-    dist: {
-      files: [{
-        expand: true,
-        cwd: 'app/images',
-        src: '{,*/}*.{png,jpg,jpeg}',
-        dest: '<%%= yeoman.dist %>/images'
-      }]
     }
-  },
-  cssmin: {
-    dist: {
-      files: {
-        '<%%= yeoman.dist %>/styles/main.css': [
-          'temp/styles/{,*/}*.css',
-          'app/styles/{,*/}*.css'
-        ]
-      }
-    }
-  }
-  });
+  }); // end grunt.initConfig();
+
+
 
   //
   //
@@ -265,7 +253,6 @@ module.exports = function (grunt) {
   // Register tasks
   //
   //
-
   grunt.renameTask('regarde', 'watch');
 
   grunt.registerTask('server', function (target) {

@@ -32,10 +32,10 @@
     "url": "git://github.com/closureplease/generator-closure.git"
   },
   "dependencies": {
-    "yeoman-generator": "~0.10.2"
+    "yeoman-generator": "~0.10.2",
+    "colorplus": "~0.2.4"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "engines": {
     "node": ">=0.8.0"
   },
