@@ -43,11 +43,15 @@ Generator.prototype.scaffold = function scaffold() {
   this.copy('_jshintrc', '.jshintrc');
   this.copy('_package.json', 'package.json');
   this.copy('NOTICE.md', 'NOTICE.md');
+  this.copy('bowerrc', '.bowerrc');
+  this.copy('_component.json', 'component.json');
 
 
   // templating copy
   this.template('Gruntfile.js', 'Gruntfile.js');
   this.template('README.md', 'README.md');
   this.template('LICENSE-MIT', 'LICENSE-MIT');
+
+  this.mkdir('app/components');
 
 };

@@ -1,0 +1,11 @@
+{
+  "name": "<%= _.slugify(appname) %>",
+  "version": "0.0.0",
+  "ignore": ["test/"],
+  "dependencies": {
+    "modernizr": "~2.6.2",
+    "jquery": "~1.9.1",
+    "closure-helpers": "~0.0.2"
+  },
+  "devDependencies": {}
+}
