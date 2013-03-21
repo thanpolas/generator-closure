@@ -29,8 +29,19 @@ git clone https://code.google.com/p/closure-library/ app/closure-library
 
 Finally, install all the dependencies:
 ```shell
-npm install
+npm install && bower install
 ```
+
+### The Library Version
+
+There is a *Library* version of the generator:
+
+```shell
+yo closure:lib
+```
+
+The *Library* version is for closure libraries that have no web output. The location of your project's base changes to `lib/` instead of the default one `app/js/`.
+
 
 ## What you get
 
@@ -338,6 +349,10 @@ The `ssd` namespace that's included in some libraries stands for SuperStartup De
 
 ## Release History
 
+- **v0.1.2**, *21 Mar 2013*
+  - Added *Library* generator
+  - Added Bower support
+  - Instruction changes
 - **v0.1.1**, *20 Mar 2013*
   - Added Source Map option
   - Minor typo fixes
