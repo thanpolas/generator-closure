@@ -10,8 +10,6 @@ The Superstartup repository, includes the following packages:
 * [sinon.js](http://sinonjs.org/) Test helper for Spying, Stubbing and Mocking
 
 
-
-
 ## Required for development
 Development of the Superstartup library requires the use of the following packages that are not included in the repository:
 
