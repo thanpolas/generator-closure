@@ -39,7 +39,8 @@
   },
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-release": "~0.3.3"
+    "grunt-release": "~0.3.3",
+    "matchdep": "~0.1.2"
   },
   "engines": {
     "node": ">=0.8.0"
