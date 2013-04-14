@@ -10,10 +10,10 @@ The generator is using [yeoman][] and relies on [Grunt][] to operate. If you don
 npm install -g yo grunt-cli
 ```
 
-Next **create and enter** your project's directory. Install the generator locally:
+The generator itself can be globally installed and reused anywhere:
 
 ```shell
-npm install generator-closure
+npm install -g generator-closure
 ```
 
 Run it:
