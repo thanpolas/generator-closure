@@ -37,7 +37,10 @@
     "color": "~0.4.2",
     "colors": "~0.6.0-1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-release": "~0.3.3"
+  },
   "engines": {
     "node": ">=0.8.0"
   },
