@@ -31,6 +31,9 @@ module.exports = function (grunt) {
 
     // The path to the closure library
     closureLibrary: '<%= closure.closurePath %>closure-library',
+    
+    // The path to the installed bower components
+    componentPath: 'app/components',
 
     // the compiled file
     destCompiled: '<%= closure.distPath %>/app.js',
@@ -143,7 +146,10 @@ module.exports = function (grunt) {
       },
       app: {
         options: {
-          root_with_prefix: ['"' + CONF.appPath + ' ../../../<%= closure.sourceRel %>"']
+          root_with_prefix: [
+            '"' + CONF.appPath + ' ../../../<%= closure.sourceRel %>"',
+            '"' + CONF.componentPath + ' ../../../components"'
+          ]
         },
         dest: '' + CONF.appPath + '/deps.js'
       },
@@ -184,14 +190,22 @@ module.exports = function (grunt) {
         }
       },
       app: {
-        src: [CONF.appPath, CONF.closureLibrary],
+        src: [
+          CONF.appPath, 
+          CONF.closureLibrary,
+          CONF.componentPath
+        ],
         dest: 'temp/compiled.js'
       },
       debug: {
         options: {
           compilerFile: compiler.getPath()
         },
-        src: [CONF.appPath, CONF.closureLibrary],
+        src: [
+          CONF.appPath, 
+          CONF.closureLibrary,
+          CONF.componentPath
+        ],
         dest: 'temp/compiled.debug.js'
       }
     },
