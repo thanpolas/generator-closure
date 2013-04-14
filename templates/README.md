@@ -1,6 +1,6 @@
 # <%= appname %>
 
-A kick ass library!
+An application made with [Closure Library][closure-library].
 
 ## Getting Started
 
@@ -38,3 +38,4 @@ Licensed under the [MIT](LICENSE-MIT).
 [package.json]: https://npmjs.org/doc/json.html
 [Gruntfile]: https://github.com/gruntjs/grunt/wiki/Sample-Gruntfile "Grunt's Gruntfile.js"
 [yeoman]: http://yeoman.io/ "yeoman Modern Workflows for Modern Webapps"
+[bower]:http://twitter.github.com/bower/ "THE BROWSER PACKAGE MANAGER html, css, and javascript"
