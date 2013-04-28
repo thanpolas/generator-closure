@@ -15,6 +15,7 @@ var Generator = module.exports = function Generator() {
   this.closure.appPath = 'app/js';
   this.closure.sourceRel = 'js';
   this.closure.closurePath = 'app/';
+  this.closure.closureLinterPath = 'app/';
   this.closure.distPath = 'app/jsc';
 
 };

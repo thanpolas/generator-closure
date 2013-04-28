@@ -31,7 +31,10 @@ module.exports = function (grunt) {
 
     // The path to the closure library
     closureLibrary: '<%= closure.closurePath %>closure-library',
-    
+
+    // The path to the closure linter.
+    closureLinter: '<%= closure.closureLinterPath %>closure-linter/closure_linter'
+
     // The path to the installed bower components
     componentPath: 'app/components',
 
@@ -191,7 +194,7 @@ module.exports = function (grunt) {
       },
       app: {
         src: [
-          CONF.appPath, 
+          CONF.appPath,
           CONF.closureLibrary,
           CONF.componentPath
         ],
@@ -202,7 +205,7 @@ module.exports = function (grunt) {
           compilerFile: compiler.getPath()
         },
         src: [
-          CONF.appPath, 
+          CONF.appPath,
           CONF.closureLibrary,
           CONF.componentPath
         ],
@@ -253,6 +256,33 @@ module.exports = function (grunt) {
             'temp/styles/{,*/}*.css',
             'app/styles/{,*/}*.css'
           ]
+        }
+      }
+    },
+
+    // Linting tasks.
+
+    closureLint: {
+      app:{
+        closureLinterPath : CONF.closureLinter,
+        src: [
+          'app/js/**'
+        ],
+        options: {
+          stdout: true,
+          strict: true
+        }
+      }
+    },
+    closureFixStyle: {
+      app:{
+        closureLinterPath : CONF.closureLinter,
+        src: [
+          'app/js/**'
+        ],
+        options: {
+          stdout: true,
+          strict: true
         }
       }
     }
@@ -312,4 +342,11 @@ module.exports = function (grunt) {
       'deps'
   ]);
 
+  grunt.registerTask('lint', [
+    'closureLint:app'
+  ]);
+
+  grunt.registerTask('fixstyle', [
+    'closureFixStyle:app'
+  ]);
 };
