@@ -33,7 +33,7 @@ module.exports = function (grunt) {
     closureLibrary: '<%= closure.closurePath %>closure-library',
 
     // The path to the closure linter.
-    closureLinter: '<%= closure.closureLinterPath %>closure-linter/closure_linter'
+    closureLinter: '<%= closure.closureLinterPath %>closure-linter/closure_linter',
 
     // The path to the installed bower components
     componentPath: 'app/components',
