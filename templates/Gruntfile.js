@@ -1,14 +1,14 @@
 /*jshint camelcase:false */
 // Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
 
-var compiler = require('superstartup-closure-compiler'),
-    path     = require('path');
+var compiler = require('superstartup-closure-compiler');
+var path     = require('path');
 
 
 var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
 var mountFolder = function (connect, dir) {
     return connect.static(path.resolve(dir));
-};
+  };
 
 module.exports = function (grunt) {
 
@@ -180,7 +180,7 @@ module.exports = function (grunt) {
           externs: [CONF.externsPath + '*.js'],
           define: [
             '\'goog.DEBUG=false\''
-            ],
+          ],
           warning_level: 'verbose',
           jscomp_off: ['checkTypes', 'fileoverviewTags'],
           summary_detail_level: 3,
@@ -226,10 +226,10 @@ module.exports = function (grunt) {
       }
     },
     concat: {
-        production: {
-          src: ['temp/vendor.js', 'temp/compiled.js'],
-          dest: CONF.destCompiled
-        }
+      production: {
+        src: ['temp/vendor.js', 'temp/compiled.js'],
+        dest: CONF.destCompiled
+      }
     },
 
 
@@ -339,7 +339,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-      'deps'
+    'deps'
   ]);
 
   grunt.registerTask('lint', [
