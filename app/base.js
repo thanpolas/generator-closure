@@ -2,7 +2,7 @@
  * The base library every generator in this repo extends
  *
  */
-require("colorplus").enable();
+require('colorplus').enable();
 var generator = require('yeoman-generator');
 var util      = require('util');
 var path      = require('path');
@@ -41,7 +41,8 @@ Generator._onEnd = function () {
   var finalMessage = allDone.bold.cyan + '\n\n';
 
   finalMessage += getStep('STEP 1.', 'Download the Closure Library in the "' +
-    this.closure.closurePath.bold.yellow  + 'closure-library" directory:');
+    this.closure.closurePath.bold.magenta  + 'closure-library'.bold.magenta +
+    '" directory:');
   finalMessage += '    git clone https://code.google.com/p/closure-library/ '.bold.yellow +
     this.closure.closurePath.bold.yellow + 'closure-library'.bold.yellow + '\n';
   finalMessage += '    or ' + 'bower install closure-library'.bold.yellow + '\n';
@@ -52,11 +53,11 @@ Generator._onEnd = function () {
   finalMessage += '    npm install && bower install'.bold.yellow +'\n';
 
   finalMessage += getStep('STEP 3.', 'Happy hacking!');
-  finalMessage += '    grunt server'.bold.yellow + ' Launch a static server ' +
+  finalMessage += '    grunt server'.bold.magenta + ' Launch a static server ' +
     'with livereload\n';
-  finalMessage += '    grunt build'.bold.yellow + ' Build your application\n';
-  finalMessage += '    grunt test'.bold.yellow + ' Run all tests from console\n';
-  finalMessage += '    grunt server:test'.bold.yellow + ' Run all tests from ' +
+  finalMessage += '    grunt build'.bold.magenta + ' Build your application\n';
+  finalMessage += '    grunt test'.bold.magenta + ' Run all tests from console\n';
+  finalMessage += '    grunt server:test'.bold.magenta + ' Run all tests from ' +
     'your browser\n';
 
 
