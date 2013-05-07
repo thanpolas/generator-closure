@@ -349,6 +349,10 @@ The `ssd` namespace that's included in some libraries stands for SuperStartup De
 
 ## Release History
 
+- **v0.1.5**, *07 May 2013*
+  - Renamed `component.json` to `bower.json`
+  - Linted Gruntfile
+  - Minor color tweaks
 - **v0.1.4**, *14 Apr 2013*
   - Added Closure Linter task, thanks @pr4v33n
 - **v0.1.3**, *14 Apr 2013*
