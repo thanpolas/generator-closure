@@ -34,7 +34,7 @@ Generator.prototype.scaffold = function scaffold() {
   this.copy('_package.json', 'package.json');
   this.copy('NOTICE.md', 'NOTICE.md');
   this.copy('bowerrc', '.bowerrc');
-  this.copy('_component.json', 'component.json');
+  this.copy('_bower.json', 'bower.json');
 
   // copy web deps
   this.copy('_fragments/_deps.web.js', 'app/js/deps.js');
