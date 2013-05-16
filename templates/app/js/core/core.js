@@ -92,7 +92,7 @@ app.Core.getInstance = function() {
  */
 app.Core.prototype.init = function( optCallback ) {
 
-  this.logger.info('init() :: Kicking off SuperStartup. isReady:' + this._isReady);
+  this.logger.info('init() :: Kicking off Application. isReady:' + this._isReady);
 
   var cb = optCallback || ssd.noop;
 
