@@ -158,13 +158,21 @@ module.exports = function (grunt) {
       },
       bddTest: {
         options: {
-          root_with_prefix: ['"test ../../../../../test"']
+          root_with_prefix: [
+            '"test ../../../../../test"',
+            '"' + CONF.appPath + ' ../../../<%= closure.sourceRel %>"',
+            '"' + CONF.componentPath + ' ../../../components"'
+          ]
         },
         dest: 'test/bdd/deps-test-bdd.js'
       },
       unitTest: {
         options: {
-          root_with_prefix: ['"test ../../../../../test"']
+          root_with_prefix: [
+            '"test ../../../../../test"',
+            '"' + CONF.appPath + ' ../../../<%= closure.sourceRel %>"',
+            '"' + CONF.componentPath + ' ../../../components"'
+          ]
         },
         dest: 'test/unit/deps-test-tdd.js'
       }
