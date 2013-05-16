@@ -1,6 +1,6 @@
 {
   "name": "generator-closure",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Generator for Closure Library",
   "keywords": [
     "yeoman-generator",
