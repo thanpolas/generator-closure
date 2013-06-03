@@ -349,6 +349,8 @@ The `ssd` namespace that's included in some libraries stands for SuperStartup De
 
 ## Release History
 
+- **v0.1.7**, *3 Jun 2013*
+  - Bug fix for library generation
 - **v0.1.6**, *1 May 2013*
   - Several bugfixes, all found thanks to [@JayGray](https://github.com/JayGray).
 - **v0.1.5**, *07 May 2013*
