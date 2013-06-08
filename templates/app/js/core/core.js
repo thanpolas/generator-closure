@@ -4,6 +4,8 @@
 goog.provide('app.Core');
 goog.provide('appOne');
 
+goog.require('goog.events.EventHandler');
+
 goog.require('app.Module');
 goog.require('ssd.helpers');
 goog.require('app.ui.Debug');
@@ -128,15 +130,15 @@ app.Core.prototype.isReady = function() {
 };
 
 /**
- * Generic listener method for all events emitted by this app.
+ * Listen to events emitted by this app.
  *
  * @param {Object | goog.events.Event | null | string} event object
  * @param {Function} cb The callback function.
  * @param {Object=} optSelf optionally define a context to invoke the callback on.
  * @return {goog.events.ListenableKey} a unique event key.
  */
-app.Core.prototype.listen = function(event, cb, optSelf) {
-  return goog.events.listen( this, event, cb, false, optSelf || goog.global);
+app.Core.prototype.on = function(event, cb, optSelf) {
+  return this.listen( event, cb, false, optSelf || goog.global);
 };
 
 /**
@@ -152,22 +154,15 @@ app.Core.prototype.trigger = function( event ) {
 
 
 /**
+ * Remove a listener.
+ *
  * @param  {goog.events.ListenableKey} key the ksy.
  * @param  {goog.events.ListenableKey } key The key from listen().
  * @return {boolean} indicating whether the listener was there to remove.
  */
-app.Core.prototype.unlisten = function( key ) {
-  return goog.events.unlistenByKey( key );
+app.Core.prototype.removeListener = function( key ) {
+  return this.unlistenByKey( key );
 };
-
-/**
- * @param  {string=} optType Optionally narrow down to specific type.
- * @return {number} Number of listeners removed.
- */
-app.Core.prototype.removeAllListeners = function( optType ) {
-  return goog.events.removeAll( this, optType);
-};
-
 
 /**
  * Synchronous (silent) initialization of the library.

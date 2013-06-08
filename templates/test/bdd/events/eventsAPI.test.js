@@ -16,7 +16,7 @@ describe('Events API', function(){
     function cb () {
       done();
     }
-    appOne.listen('custom.event', cb);
+    appOne.on('custom.event', cb);
     appOne.trigger('custom.event');
   });
 
@@ -24,7 +24,7 @@ describe('Events API', function(){
     function cb (eventObj) {
       eventObj.preventDefault();
     }
-    appOne.listen('custom.event', cb);
+    appOne.on('custom.event', cb);
     expect(appOne.trigger('custom.event')).to.be.false;
     done();
   });
@@ -33,7 +33,7 @@ describe('Events API', function(){
     function cb (eventObj) {
       return false;
     }
-    appOne.listen('custom.event', cb);
+    appOne.on('custom.event', cb);
     expect(appOne.trigger('custom.event')).to.be.false;
     done();
   });
@@ -46,7 +46,7 @@ describe('Events API', function(){
       expect(this.a).to.be.equal(1);
       done();
     }
-    appOne.listen('custom.eventTwo', cb, obj);
+    appOne.on('custom.eventTwo', cb, obj);
     appOne.trigger('custom.eventTwo');
   });
 
@@ -56,7 +56,7 @@ describe('Events API', function(){
       expect(eventObj.arg2).to.be.equal(2);
       done();
     }
-    appOne.listen('custom.eventThree', cb);
+    appOne.on('custom.eventThree', cb);
     var eventObj = {
       type: 'custom.eventThree',
       arg1: 1,
@@ -66,12 +66,12 @@ describe('Events API', function(){
   });
 
   it('should remove listeners', function(){
-    var cid = appOne.listen('custom.eventFour', function(){
+    var cid = appOne.on('custom.eventFour', function(){
       // should never be here
       expect(false).to.be.true;
     });
 
-    appOne.unlisten(cid);
+    appOne.removeListener(cid);
     appOne.trigger('custom.eventFour');
     expect(true).to.be.true;
   });
@@ -82,10 +82,10 @@ describe('Events API', function(){
       expect(false).to.be.true;
     }
 
-    appOne.listen('custom.eventFive', cb);
-    appOne.listen('custom.eventFive', cb);
-    appOne.listen('custom.eventSix', cb);
-    appOne.listen('custom.eventSeven', cb);
+    appOne.on('custom.eventFive', cb);
+    appOne.on('custom.eventFive', cb);
+    appOne.on('custom.eventSix', cb);
+    appOne.on('custom.eventSeven', cb);
 
     var n = appOne.removeAllListeners();
     appOne.trigger('custom.eventFive');

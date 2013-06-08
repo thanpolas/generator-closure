@@ -10,7 +10,7 @@ describe('Core API :: appOne()', function(){
     });
 
     it('should have a listen method', function() {
-      expect( appOne.listen ).to.be.a('function');
+      expect( appOne.on ).to.be.a('function');
     });
 
     it('should have an init method', function() {
@@ -39,7 +39,7 @@ describe('Core API :: appOne()', function(){
     describe('Executing appOne() and follow up ready methods', function() {
 
       it('should boot up the appOne and emit an init event', function(done){
-        appOne.listen(app.test.fixture.event.core.INIT, initEventCb);
+        appOne.on(app.test.fixture.event.core.INIT, initEventCb);
 
         appReturn = appOne( appCallback );
 
