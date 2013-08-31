@@ -28,7 +28,7 @@ util.inherits(Generator, generator.Base);
 Generator._onEnd = function () {
 
   function getStep(step, descr) {
-    return '\n\n' + step.inverse.green + ' ' + descr.bold.green + '\n';
+    return '\n\n' + step.bggreen + ' ' + descr.bold.green + '\n';
   }
 
   var allDone = '\n\n';
