@@ -94,7 +94,7 @@ The *Library* version is for closure libraries that have no web output. The loca
 
 The `grunt server` task will do quite a few things for you.
 
-* A static server will listen on port 9000.
+* A static server will listen on port 9000 (or anything you'd like, with: `--port=8080`).
 * A [live reload server][grunt-live-reload] will be launched.
 * All your codebase will be wathed for changes and trigger livereload events
 * Finally, your browser will open on the project page
