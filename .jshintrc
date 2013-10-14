@@ -78,6 +78,11 @@
       "app",
       "ssd",
       "appOne",
-      "when"
+      "when",
+      "it",
+      "test",
+      "describe",
+      "beforeEach",
+      "before"
   ]
 }

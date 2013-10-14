@@ -2,13 +2,13 @@
  * The base library every generator in this repo extends
  *
  */
-require('colorplus').enable();
+require('colors');
 var generator = require('yeoman-generator');
 var util      = require('util');
 var path      = require('path');
 
 
-var Generator = module.exports = function Generator() {
+var Generator = module.exports = function Generator(args, options, config) {
   generator.Base.apply(this, arguments);
 
   // this.option('flag', { desc: 'Desc for flag', ...})
@@ -20,7 +20,6 @@ var Generator = module.exports = function Generator() {
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 
   this.on('end', Generator._onEnd.bind(this));
-
 };
 util.inherits(Generator, generator.Base);
 
@@ -30,6 +29,9 @@ Generator._onEnd = function () {
   function getStep(step, descr) {
     return '\n\n' + step.inverse.green + ' ' + descr.bold.green + '\n';
   }
+
+  // this.installDependencies({ skipInstall: options['skip-install'] });
+
 
   var allDone = '\n\n';
   allDone += '             ___    ____       __                 __\n';

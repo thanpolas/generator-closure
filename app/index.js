@@ -7,7 +7,7 @@ var util      = require('util');
 
 // Documentation: https://github.com/yeoman/generator/wiki/base
 
-var Generator = module.exports = function Generator() {
+var Generator = module.exports = function Generator(args, options, config) {
   BaseGenerator.apply(this, arguments);
 
   this.closure.web = true;
@@ -17,12 +17,10 @@ var Generator = module.exports = function Generator() {
   this.closure.closurePath = 'app/';
   this.closure.closureLinterPath = 'app/';
   this.closure.distPath = 'app/jsc';
-
 };
 util.inherits(Generator, BaseGenerator);
 
-Generator.prototype.scaffold = function scaffold() {
-
+Generator.prototype.app = function app() {
   // do plain copy operations
   this.directory('app');
   this.directory('build');
