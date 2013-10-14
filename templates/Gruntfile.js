@@ -1,14 +1,7 @@
 /*jshint camelcase:false */
 // Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
-
+//
 var compiler = require('superstartup-closure-compiler');
-var path     = require('path');
-
-
-var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
-var mountFolder = function (connect, dir) {
-    return connect.static(path.resolve(dir));
-  };
 
 module.exports = function (grunt) {
 
@@ -33,24 +26,24 @@ module.exports = function (grunt) {
     closureLibrary: '<%= closure.closurePath %>closure-library',
 
     // The path to the closure linter.
-    closureLinter: '<%= closure.closureLinterPath %>closure-linter/closure_linter',
+    closureLinter: '<%= closure.closurePath %>/closure-linter/closure_linter',
 
     // The path to the installed bower components
-    componentPath: 'app/components',
+    componentPath: '<%= closure.closurePath %>/components',
 
     // the compiled file
-    destCompiled: '<%= closure.distPath %>/app.js',
+    destCompiled: '<%= closure.closurePath %>/jsc/app.js',
 
     // define the path to the app
-    appPath: '<%= closure.appPath %>/',
+    appPath: '<%= closure.closurePath %>/js/',
 
     // The location of the source map
-    sourceMap: '<%= closure.distPath %>/sourcemap.js.map',
+    sourceMap: '<%= closure.closurePath %>/jsc/sourcemap.js.map',
 
     // This sting will wrap your code marked as %output%
     // Take care to edit the sourcemap path
     outputWrapper: '(function(){%output%}).call(this);' +
-      '//@sourceMappingURL=<%= closure.distPath %>/sourcemap.js.map'
+      '//@sourceMappingURL=<%= closure.closurePath %>/jsc/sourcemap.js.map'
   };
 
   // the file globbing pattern for vendor file uglification.
@@ -75,38 +68,39 @@ module.exports = function (grunt) {
   grunt.initConfig({
     watch: {
       livereload: {
+        options: {
+          livereload: true
+        },
         files: [
           CONF.appPath + '/**/*.js'
         ],
-        tasks: ['livereload']
       },
       test: {
+        options: {
+          livereload: true
+        },
         files: [
           CONF.appPath + '/**/*.js',
           'test/**/*.js'
         ],
-        tasks: ['livereload']
       }
     },
     connect: {
       options: {
-        port: grunt.option('port') || 9000,
-        // --hostname=0.0.0.0 to access the server from outside
-        hostname: grunt.option('hostname') || 'localhost',
-        keepalive: false
+        port: 9000,
+        // change this to '0.0.0.0' to access the server from outside
+        hostname: 'localhost',
+        keepalive: false,
       },
-      livereload: {
+      app: {
         options: {
-          middleware: function (connect) {
-            return [ lrSnippet, mountFolder(connect, '<%= closure.basePath %>/')];
-          }
-        }
+          base: './app',
+        },
       },
       test: {
         options: {
           port: 4242,
           base: './',
-          keepalive: false
         }
       }
     },
@@ -305,13 +299,10 @@ module.exports = function (grunt) {
   // Register tasks
   //
   //
-  grunt.renameTask('regarde', 'watch');
-
   grunt.registerTask('server', function (target) {
     if (target === 'test') {
       return grunt.task.run([
         'clean:server',
-        'livereload-start',
         'connect:test',
         'open:test',
         'watch:test'
@@ -320,8 +311,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'livereload-start',
-      'connect:livereload',
+      'connect:app',
       'open:server',
       'watch:livereload'
     ]);

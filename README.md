@@ -349,6 +349,10 @@ The `ssd` namespace that's included in some libraries stands for SuperStartup De
 
 ## Release History
 
+- **v0.1.9**, *14 Oct 2013*
+  - Allow overriding hostname and port of grunt server.
+  - Fix generator `green` bug.
+
 - **v0.1.8**, *8 Jun 2013*
   - Fix event handling so it works with recent closure changes.
 - **v0.1.7**, *3 Jun 2013*
