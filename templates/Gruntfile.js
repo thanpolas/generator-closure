@@ -2,6 +2,9 @@
 // Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
 //
 var compiler = require('superstartup-closure-compiler');
+var mountFolder = function (connect, dir) {
+  return connect.static(require('path').resolve(dir));
+};
 
 module.exports = function (grunt) {
 
@@ -23,7 +26,7 @@ module.exports = function (grunt) {
     entryPoint: 'app',
 
     // The path to the closure library
-    closureLibrary: '<%= closure.closurePath %>closure-library',
+    closureLibrary: process.env.CLOSURE_PATH || '<%= closure.closurePath %>closure-library',
 
     // The path to the closure linter.
     closureLinter: '<%= closure.closurePath %>closure-linter/closure_linter',
@@ -94,13 +97,23 @@ module.exports = function (grunt) {
       },
       app: {
         options: {
-          base: './app',
+          middleware: function(connect) {
+            return [
+              mountFolder(connect, './app'),
+              mountFolder(connect, CONF.closureLibrary),
+            ];
+          },
         },
       },
       test: {
         options: {
           port: 4242,
-          base: './',
+          middleware: function(connect) {
+            return [
+              mountFolder(connect, './'),
+              mountFolder(connect, CONF.closureLibrary),
+            ];
+          },
         }
       }
     },
