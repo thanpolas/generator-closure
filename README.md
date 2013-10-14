@@ -352,7 +352,7 @@ The `ssd` namespace that's included in some libraries stands for SuperStartup De
 - **v0.1.9**, *14 Oct 2013*
   - Allow overriding hostname and port of grunt server.
   - Fix generator `green` bug.
-
+  - Enables defining closure-library location using the `CLOSURE_PATH` env var closureplease/generator-closure#3
 - **v0.1.8**, *8 Jun 2013*
   - Fix event handling so it works with recent closure changes.
 - **v0.1.7**, *3 Jun 2013*
