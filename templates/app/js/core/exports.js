@@ -10,6 +10,7 @@ goog.require('appOne');
 
 // core
 goog.exportSymbol('appOne', appOne);
+goog.exportSymbol('appOne.on', appOne.on);
 goog.exportSymbol('appOne.init', appOne.init);
 goog.exportSymbol('appOne.isReady', appOne.isReady);
 

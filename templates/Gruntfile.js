@@ -26,24 +26,24 @@ module.exports = function (grunt) {
     closureLibrary: '<%= closure.closurePath %>closure-library',
 
     // The path to the closure linter.
-    closureLinter: '<%= closure.closurePath %>/closure-linter/closure_linter',
+    closureLinter: '<%= closure.closurePath %>closure-linter/closure_linter',
 
     // The path to the installed bower components
-    componentPath: '<%= closure.closurePath %>/components',
+    componentPath: '<%= closure.closurePath %>components',
 
     // the compiled file
-    destCompiled: '<%= closure.closurePath %>/jsc/app.js',
+    destCompiled: '<%= closure.closurePath %>jsc/app.js',
 
     // define the path to the app
-    appPath: '<%= closure.closurePath %>/js/',
+    appPath: '<%= closure.closurePath %>js/',
 
     // The location of the source map
-    sourceMap: '<%= closure.closurePath %>/jsc/sourcemap.js.map',
+    sourceMap: '<%= closure.closurePath %>jsc/sourcemap.js.map',
 
     // This sting will wrap your code marked as %output%
     // Take care to edit the sourcemap path
     outputWrapper: '(function(){%output%}).call(this);' +
-      '//@sourceMappingURL=<%= closure.closurePath %>/jsc/sourcemap.js.map'
+      '//@sourceMappingURL=<%= closure.closurePath %>jsc/sourcemap.js.map'
   };
 
   // the file globbing pattern for vendor file uglification.
