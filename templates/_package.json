@@ -34,7 +34,8 @@
     "grunt-mocha": "~0.3.0",
     "chai": "~1.5.0",
     "chai-as-promised": "~3.2.5",
-    "superstartup-closure-compiler": "~0.1.5"
+    "superstartup-closure-compiler": "~0.1.5",
+    "time-grunt": "~0.1.1"
   },
   "engines": {
     "node": ">=0.8.0"
