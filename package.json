@@ -2,6 +2,7 @@
   "name": "generator-closure",
   "version": "0.1.11",
   "description": "Generator for Closure Library",
+  "preferGlobal": "true",
   "keywords": [
     "yeoman-generator",
     "yeoman",
