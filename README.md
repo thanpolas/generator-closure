@@ -2,6 +2,9 @@
 
 Create a fully working [Closure Library][closure-library] project in seconds.
 
+[![NPM](https://nodei.co/npm/generator-closure.png?downloads=true)](https://npmjs.org/package/generator-closure)
+
+
 ## Getting Started
 
 The generator is using [yeoman][] and relies on [Grunt][] to operate. If you don't have them, install:
@@ -349,6 +352,8 @@ The `ssd` namespace that's included in some libraries stands for SuperStartup De
 
 ## Release History
 
+- **v0.1.11**, *05 Dec 2013*
+  - Updated all dependencies to latest.
 - **v0.1.9**, *14 Oct 2013*
   - Allow overriding hostname and port of grunt server.
   - Fix generator `green` bug.
