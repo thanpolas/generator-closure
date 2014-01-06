@@ -352,6 +352,8 @@ The `ssd` namespace that's included in some libraries stands for SuperStartup De
 
 ## Release History
 
+- **v0.1.13**, *06 Jan 2013*
+  - Force create `temp/` folder.
 - **v0.1.12**, *05 Dec 2013*
   - Updated all dependencies to latest.
 - **v0.1.9**, *14 Oct 2013*
