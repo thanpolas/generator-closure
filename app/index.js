@@ -44,4 +44,8 @@ Generator.prototype.app = function app() {
 
   this.mkdir('app/components');
 
+  // In some cases the 'temp' folder does not get created before the closureBuilder
+  // runs and results in build breaking, make sure "temp/" is there.
+  this.mkdir('temp');
+
 };
