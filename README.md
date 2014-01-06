@@ -352,7 +352,7 @@ The `ssd` namespace that's included in some libraries stands for SuperStartup De
 
 ## Release History
 
-- **v0.1.13**, *06 Jan 2013*
+- **v0.1.13**, *06 Jan 2014*
   - Force create `temp/` folder.
   - Updated `grunt-closure-tools` package to `~0.9.0`, latest.
 - **v0.1.12**, *05 Dec 2013*
