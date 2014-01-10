@@ -352,9 +352,9 @@ The `ssd` namespace that's included in some libraries stands for SuperStartup De
 
 ## Release History
 
-- **v0.1.14**, *10 Jan 2014*
-  - Update SourceMap definition to latest spec, thanks [@xasima](https://github.com/xasima)
-  - Switched to Vanilla Closure Compiler for production build.
+- **v0.1.15**, *10 Jan 2014*
+  - Update SourceMap definition to latest spec, thanks [@xasima](https://github.com/xasima) [#23](https://github.com/closureplease/generator-closure/issues/23)
+  - Switched to Vanilla Closure Compiler for production build [#24](https://github.com/closureplease/generator-closure/issues/23).
 - **v0.1.13**, *06 Jan 2014*
   - Force create `temp/` folder.
   - Updated `grunt-closure-tools` package to `~0.9.0`, latest.
