@@ -46,7 +46,7 @@ module.exports = function (grunt) {
     // This sting will wrap your code marked as %output%
     // Take care to edit the sourcemap path
     outputWrapper: '(function(){%output%}).call(this);' +
-      '//@sourceMappingURL=<%= closure.closurePath %>jsc/sourcemap.js.map'
+      '//# /jsc/sourcemap.js.map'
   };
 
   // the file globbing pattern for vendor file uglification.
