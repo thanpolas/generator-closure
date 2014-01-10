@@ -1,6 +1,6 @@
 {
   "name": "generator-closure",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Generator for Closure Library",
   "preferGlobal": "true",
   "keywords": [
