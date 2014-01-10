@@ -189,7 +189,7 @@ module.exports = function (grunt) {
         closureLibraryPath: CONF.closureLibrary,
         inputs: [CONF.appPath + CONF.bootstrapFile],
         compile: true,
-        compilerFile: compiler.getPathSS(),
+        compilerFile: compiler.getPath(),
         compilerOpts: {
           compilation_level: 'ADVANCED_OPTIMIZATIONS',
           externs: [CONF.externsPath + '*.js'],
