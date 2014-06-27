@@ -27,7 +27,7 @@ yo closure
 
 After the generator is finished, you need to add the Closure Library in the `app/closure-library` path:
 ```shell
-git clone https://code.google.com/p/closure-library/ app/closure-library
+git clone https://github.com/google/closure-library app/closure-library
 ```
 
 Finally, install all the dependencies:
