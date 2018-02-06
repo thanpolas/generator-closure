@@ -405,7 +405,7 @@ Licensed under the [MIT](LICENSE-MIT).
 [closure compiler]: https://developers.google.com/closure/compiler/ "Google's Closure Compiler"
 [ADVANCED_OPTIMIZATIONS]: https://developers.google.com/closure/compiler/docs/api-tutorial3 "closure compiler Advanced optimizations"
 [ss-compiler]: https://github.com/thanpolas/superstartup-closure-compiler#readme "superstartup closure compiler"
-[Mocha]: http://visionmedia.github.com/mocha/ "Mocha testing library"
+[Mocha]: http://mochajs.org/ "Mocha testing library"
 [Chai.js]: http://chaijs.com/ "Chai Assertion Library"
 [Sinon.js]: http://sinonjs.org/ "Standalone test spies, stubs and mocks for JavaScript."
 [Externs]: https://developers.google.com/closure/compiler/docs/api-tutorial3#externs "Closure Compiler externs file"
